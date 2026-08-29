@@ -1,0 +1,4 @@
+# Ignore web & boilerplate platform wrappers from GitHub language statistics
+web/** linguist-vendored
+*.html linguist-detectable=false
+*.html linguist-documentation
