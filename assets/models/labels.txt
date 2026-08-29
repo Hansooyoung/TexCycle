@@ -1,0 +1,8 @@
+kain_besar
+kain_sedang
+kain_kecil
+benang
+kemasan
+limbah_cair
+sludge
+majun

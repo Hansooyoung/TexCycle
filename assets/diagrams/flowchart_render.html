@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Flowchart Sistem TexCycle Versi 1.2</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1920px;
+      height: 1100px;
+      background: #F8FAFC;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .main-card {
+      width: 1840px;
+      height: 1020px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 2px solid #E2E8F0;
+      padding: 30px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #EDF2F7;
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+    }
+    .header-left h1 {
+      font-size: 28px;
+      color: #1B5E20;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-left p {
+      font-size: 15px;
+      color: #718096;
+      margin-top: 4px;
+    }
+    .badge {
+      background: #E8F5E9;
+      color: #1B5E20;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 30px;
+      border: 1px solid #A5D6A7;
+    }
+    .svg-container {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-card">
+    <div class="header">
+      <div class="header-left">
+        <h1>DIAGRAM ALIR SISTEM & INFERENSI AI (FLOWCHART)</h1>
+        <p>TexCycle Versi 1.2 — Alur Siklus Hidup Aplikasi, Sensor Optik Lensa Cerdas, dan Validasi 3-Tier On-Device</p>
+      </div>
+      <div class="badge">100% OFF-LINE • ON-DEVICE INTELLIGENCE</div>
+    </div>
+
+    <div class="svg-container">
+      <svg width="1760" height="850" viewBox="0 0 1760 850" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.06"/>
+          </filter>
+          <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#1B5E20"/>
+          </marker>
+          <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#C62828"/>
+          </marker>
+          <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#D97706"/>
+          </marker>
+          <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563EB"/>
+          </marker>
+        </defs>
+
+        <!-- 1. START NODE -->
+        <g filter="url(#shadow)">
+          <rect x="40" y="380" width="160" height="70" rx="35" fill="#1B5E20"/>
+          <text x="120" y="416" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">MULAI APLIKASI</text>
+          <text x="120" y="435" fill="#A5D6A7" font-size="12" text-anchor="middle">Tap Ikon TexCycle</text>
+        </g>
+
+        <!-- Arrow to Splash -->
+        <line x1="200" y1="415" x2="250" y2="415" stroke="#1B5E20" stroke-width="3" marker-end="url(#arrow-green)"/>
+
+        <!-- 2. SPLASHVIEW PRELOADER -->
+        <g filter="url(#shadow)">
+          <rect x="255" y="360" width="220" height="110" rx="12" fill="#F0FDF4" stroke="#16A34A" stroke-width="2"/>
+          <rect x="255" y="360" width="220" height="32" rx="12" fill="#16A34A"/>
+          <text x="365" y="382" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">1. SplashView Preloader</text>
+          <text x="365" y="412" fill="#166534" font-size="12" font-weight="600" text-anchor="middle">• Buka Koneksi SQLite Lokal</text>
+          <text x="365" y="432" fill="#166534" font-size="12" font-weight="600" text-anchor="middle">• Pra-Pemanasan TFLite ke RAM</text>
+          <text x="365" y="452" fill="#166534" font-size="12" font-weight="600" text-anchor="middle">• Kalibrasi Hardware Kamera</text>
+        </g>
+
+        <!-- Arrow to Home -->
+        <line x1="475" y1="415" x2="525" y2="415" stroke="#1B5E20" stroke-width="3" marker-end="url(#arrow-green)"/>
+
+        <!-- 3. HOMEVIEW DASHBOARD -->
+        <g filter="url(#shadow)">
+          <rect x="530" y="350" width="240" height="130" rx="12" fill="#15803D" stroke="#166534" stroke-width="2"/>
+          <text x="650" y="382" fill="#ffffff" font-size="16" font-weight="bold" text-anchor="middle">2. HomeView (Dashboard)</text>
+          <text x="650" y="410" fill="#DCFCE7" font-size="12" text-anchor="middle">Agregasi Statistik 30 Hari</text>
+          <text x="650" y="430" fill="#DCFCE7" font-size="12" text-anchor="middle">Rasio Non-B3 (Aman) vs B3</text>
+          <text x="650" y="455" fill="#FEF08A" font-size="12" font-weight="bold" text-anchor="middle">⚠️ Deteksi Akumulasi B3 (7 Hari)</text>
+        </g>
+
+        <!-- BRANCH TO UTILITIES (TOP RIGHT) -->
+        <path d="M 650 350 L 650 140 L 740 140" fill="none" stroke="#2563EB" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+        <g filter="url(#shadow)">
+          <rect x="745" y="90" width="260" height="95" rx="10" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+          <text x="875" y="118" fill="#1D4ED8" font-size="14" font-weight="bold" text-anchor="middle">Layar Riwayat (HistoryView)</text>
+          <text x="875" y="140" fill="#4B5563" font-size="12" text-anchor="middle">Search Teks • Filter Chips B3/Non-B3</text>
+          <text x="875" y="160" fill="#2563EB" font-size="12" font-weight="bold" text-anchor="middle">📊 Ekspor Laporan CSV (Excel)</text>
+        </g>
+
+        <path d="M 650 140 L 650 250 L 740 250" fill="none" stroke="#2563EB" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+        <g filter="url(#shadow)">
+          <rect x="745" y="210" width="260" height="85" rx="10" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+          <text x="875" y="238" fill="#1D4ED8" font-size="14" font-weight="bold" text-anchor="middle">Panduan DIY & Pengaturan</text>
+          <text x="875" y="260" fill="#4B5563" font-size="12" text-anchor="middle">6 Tutorial Upcycling Fungsional</text>
+          <text x="875" y="278" fill="#4B5563" font-size="12" text-anchor="middle">Diagnostik & Bersihkan Cache Foto</text>
+        </g>
+
+        <!-- MAIN FLOW: HOME TO SCANVIEW -->
+        <line x1="770" y1="415" x2="825" y2="415" stroke="#1B5E20" stroke-width="3" marker-end="url(#arrow-green)"/>
+
+        <!-- 4. SCANVIEW (ADVANCE LENS HUD) -->
+        <g filter="url(#shadow)">
+          <rect x="830" y="335" width="260" height="160" rx="12" fill="#F8FAFC" stroke="#0F766E" stroke-width="2.5"/>
+          <rect x="830" y="335" width="260" height="34" rx="12" fill="#0F766E"/>
+          <text x="960" y="358" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">3. ScanView (Advance Lens HUD)</text>
+          <text x="960" y="390" fill="#0F766E" font-size="12" font-weight="bold" text-anchor="middle">Real-time Y-Luminance Sensing</text>
+          <text x="960" y="410" fill="#475569" font-size="11" text-anchor="middle">Lux Meter • Motion Blur Jitter Sensor</text>
+          <text x="960" y="430" fill="#D97706" font-size="11" font-weight="bold" text-anchor="middle">💡 1-Tap Auto-Flash Torch Chip</text>
+          <text x="960" y="450" fill="#475569" font-size="11" text-anchor="middle">Reticle Dinamis & Zoom Optik 1x/2x</text>
+          <text x="960" y="475" fill="#0F766E" font-size="12" font-weight="bold" text-anchor="middle">📸 Tekan Shutter 76px</text>
+        </g>
+
+        <!-- Arrow to Preprocessing -->
+        <line x1="1090" y1="415" x2="1135" y2="415" stroke="#1B5E20" stroke-width="3" marker-end="url(#arrow-green)"/>
+
+        <!-- 5. PREPROCESSING & AI INFERENCE -->
+        <g filter="url(#shadow)">
+          <rect x="1140" y="350" width="230" height="130" rx="12" fill="#1E293B" stroke="#0F172A" stroke-width="2"/>
+          <text x="1255" y="378" fill="#38BDF8" font-size="14" font-weight="bold" text-anchor="middle">On-Device AI Engine</text>
+          <text x="1255" y="402" fill="#E2E8F0" font-size="11" text-anchor="middle">Resize 224x224x3 • Kanal RGB</text>
+          <text x="1255" y="420" fill="#E2E8F0" font-size="11" text-anchor="middle">Normalisasi: (img / 127.5) - 1.0</text>
+          <text x="1255" y="444" fill="#4ADE80" font-size="12" font-weight="bold" text-anchor="middle">Inferensi TFLite C++ (<68 ms)</text>
+          <text x="1255" y="464" fill="#94A3B8" font-size="11" text-anchor="middle">MobileNetV2 (8 Kelas Tekstil)</text>
+        </g>
+
+        <!-- Arrow to Decision -->
+        <line x1="1370" y1="415" x2="1415" y2="415" stroke="#1B5E20" stroke-width="3" marker-end="url(#arrow-green)"/>
+
+        <!-- 6. DECISION DIAMOND (VALIDASI 3-TIER) -->
+        <g filter="url(#shadow)">
+          <polygon points="1490,345 1570,415 1490,485 1410,415" fill="#FEF3C7" stroke="#D97706" stroke-width="3"/>
+          <text x="1490" y="410" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">Evaluasi Skor</text>
+          <text x="1490" y="428" fill="#B45309" font-size="12" font-weight="bold" text-anchor="middle">Softmax</text>
+        </g>
+
+        <!-- BRANCH 1: TIER 1 (VALID >= 70%) -->
+        <path d="M 1490 345 L 1490 200 L 1575 200" fill="none" stroke="#15803D" stroke-width="3" marker-end="url(#arrow-green)"/>
+        <text x="1500" y="260" fill="#15803D" font-size="12" font-weight="bold">Skor &ge; 70%</text>
+        <g filter="url(#shadow)">
+          <rect x="1580" y="150" width="220" height="100" rx="10" fill="#F0FDF4" stroke="#16A34A" stroke-width="2.5"/>
+          <text x="1690" y="175" fill="#166534" font-size="13" font-weight="bold" text-anchor="middle">TIER 1: VALID (YAKIN)</text>
+          <text x="1690" y="198" fill="#374151" font-size="11" text-anchor="middle">Langsung Tampil di ResultView</text>
+          <text x="1690" y="216" fill="#15803D" font-size="11" font-weight="bold" text-anchor="middle">• Non-B3: Ide DIY & Taksiran Rp/kg</text>
+          <text x="1690" y="234" fill="#DC2626" font-size="11" font-weight="bold" text-anchor="middle">• B3: 5 Prosedur Wajib DLH</text>
+        </g>
+
+        <!-- BRANCH 2: TIER 2 (VERIFIKASI 50% - 70%) -->
+        <line x1="1570" y1="415" x2="1615" y2="415" stroke="#D97706" stroke-width="3" marker-end="url(#arrow-amber)"/>
+        <g filter="url(#shadow)">
+          <rect x="1620" y="370" width="210" height="90" rx="10" fill="#FFFBEB" stroke="#F59E0B" stroke-width="2.5"/>
+          <text x="1725" y="395" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">TIER 2: VERIFIKASI (50-70%)</text>
+          <text x="1725" y="418" fill="#4B5563" font-size="11" text-anchor="middle">Modal Konfirmasi Pengguna</text>
+          <text x="1725" y="438" fill="#B45309" font-size="11" font-weight="bold" text-anchor="middle">Simpan dengan is_uncertain = 1</text>
+        </g>
+
+        <!-- BRANCH 3: TIER 3 (TOLAK < 50%) -->
+        <path d="M 1490 485 L 1490 620 L 1575 620" fill="none" stroke="#DC2626" stroke-width="3" marker-end="url(#arrow-red)"/>
+        <text x="1500" y="560" fill="#DC2626" font-size="12" font-weight="bold">Skor &lt; 50%</text>
+        <g filter="url(#shadow)">
+          <rect x="1580" y="575" width="220" height="90" rx="10" fill="#FEF2F2" stroke="#EF4444" stroke-width="2.5"/>
+          <text x="1690" y="600" fill="#991B1B" font-size="13" font-weight="bold" text-anchor="middle">TIER 3: TOLAK (&lt; 50%)</text>
+          <text x="1690" y="622" fill="#4B5563" font-size="11" text-anchor="middle">Peringatan Citra Buram / Silau</text>
+          <text x="1690" y="642" fill="#DC2626" font-size="11" font-weight="bold" text-anchor="middle">Wajib Ambil Foto Ulang</text>
+        </g>
+
+        <!-- RE-TAKE PHOTO LOOP BACK TO SCANVIEW -->
+        <path d="M 1690 665 L 1690 730 L 960 730 L 960 500" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="6" marker-end="url(#arrow-red)"/>
+        <text x="1325" y="720" fill="#DC2626" font-size="12" font-weight="bold" text-anchor="middle">Loop Kembali: Arahkan Kamera Ulang Jarak 30–40 cm</text>
+
+        <!-- STORAGE & COMPLETION TO DATABASE -->
+        <path d="M 1690 250 L 1690 320 L 1380 320 L 1380 540 L 1260 540" fill="none" stroke="#15803D" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+        <path d="M 1725 460 L 1725 540 L 1260 540" fill="none" stroke="#D97706" stroke-width="2" marker-end="url(#arrow-amber)"/>
+
+        <!-- DATABASE PERSISTENCE NODE -->
+        <g filter="url(#shadow)">
+          <rect x="1035" y="505" width="220" height="75" rx="10" fill="#ECFDF5" stroke="#059669" stroke-width="2"/>
+          <text x="1145" y="530" fill="#065F46" font-size="13" font-weight="bold" text-anchor="middle">Simpan ke SQLite Lokal</text>
+          <text x="1145" y="550" fill="#047857" font-size="11" text-anchor="middle">Simpan Foto Kompresi JPG 70%</text>
+          <text x="1145" y="568" fill="#065F46" font-size="10" font-weight="bold" text-anchor="middle">Komit Transaksi Atomik (Tabel scans)</text>
+        </g>
+
+        <!-- FINAL COMPLETION BACK TO HOME -->
+        <path d="M 1035 542 L 650 542 L 650 485" fill="none" stroke="#15803D" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+        <text x="840" y="535" fill="#15803D" font-size="11" font-weight="bold" text-anchor="middle">Perbarui Statistik Dashboard 30 Hari</text>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>

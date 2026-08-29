@@ -1,0 +1,184 @@
+﻿<svg width="1760" height="850" viewBox="0 0 1760 850" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="shadow2" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.06"/>
+          </filter>
+          <marker id="db-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#1B5E20"/>
+          </marker>
+          <marker id="db-arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563EB"/>
+          </marker>
+        </defs>
+
+        <!-- 1. MAIN TABLE: scans -->
+        <g filter="url(#shadow2)">
+          <rect x="50" y="30" width="620" height="520" rx="16" fill="#ffffff" stroke="#1B5E20" stroke-width="2.5"/>
+          <path d="M 50 46 A 16 16 0 0 1 66 30 L 654 30 A 16 16 0 0 1 670 46 L 670 85 L 50 85 Z" fill="#1B5E20"/>
+          <text x="360" y="65" fill="#ffffff" font-size="18" font-weight="bold" text-anchor="middle">TABEL: scans (SQLite 3.x)</text>
+
+          <!-- Columns Header -->
+          <rect x="50" y="85" width="620" height="35" fill="#F0FDF4" border-bottom="1px solid #DCFCE7"/>
+          <text x="80" y="108" fill="#166534" font-size="12" font-weight="bold">KOLOM</text>
+          <text x="240" y="108" fill="#166534" font-size="12" font-weight="bold">TIPE DATA</text>
+          <text x="370" y="108" fill="#166534" font-size="12" font-weight="bold">ATRIBUT / INDEKS</text>
+          <text x="540" y="108" fill="#166534" font-size="12" font-weight="bold">DESKRIPSI SINGKAT</text>
+
+          <!-- Column 1: id -->
+          <line x1="50" y1="120" x2="670" y2="120" stroke="#E2E8F0" stroke-width="1"/>
+          <rect x="65" y="130" width="30" height="20" rx="4" fill="#FEF3C7"/>
+          <text x="80" y="144" fill="#92400E" font-size="10" font-weight="bold" text-anchor="middle">PK</text>
+          <text x="105" y="145" fill="#1E293B" font-size="13" font-weight="bold" font-family="Consolas">id</text>
+          <text x="240" y="145" fill="#0369A1" font-size="13" font-family="Consolas">INTEGER</text>
+          <text x="370" y="145" fill="#15803D" font-size="12" font-weight="600">PRIMARY KEY AUTO</text>
+          <text x="540" y="145" fill="#64748B" font-size="12">ID Serial Unik Riwayat</text>
+
+          <!-- Column 2: image_path -->
+          <line x1="50" y1="165" x2="670" y2="165" stroke="#E2E8F0" stroke-width="1"/>
+          <text x="105" y="190" fill="#1E293B" font-size="13" font-weight="bold" font-family="Consolas">image_path</text>
+          <text x="240" y="190" fill="#0369A1" font-size="13" font-family="Consolas">TEXT</text>
+          <text x="370" y="190" fill="#DC2626" font-size="12" font-weight="600">NOT NULL</text>
+          <text x="540" y="190" fill="#64748B" font-size="12">Path File Foto JPG 70%</text>
+
+          <!-- Column 3: jenis_id -->
+          <line x1="50" y1="210" x2="670" y2="210" stroke="#E2E8F0" stroke-width="1"/>
+          <text x="105" y="235" fill="#1E293B" font-size="13" font-weight="bold" font-family="Consolas">jenis_id</text>
+          <text x="240" y="235" fill="#0369A1" font-size="13" font-family="Consolas">TEXT</text>
+          <text x="370" y="235" fill="#DC2626" font-size="12" font-weight="600">NOT NULL</text>
+          <text x="540" y="235" fill="#64748B" font-size="12">Kode ID Kelas Model</text>
+
+          <!-- Column 4: label_nama -->
+          <line x1="50" y1="255" x2="670" y2="255" stroke="#E2E8F0" stroke-width="1"/>
+          <text x="105" y="280" fill="#1E293B" font-size="13" font-weight="bold" font-family="Consolas">label_nama</text>
+          <text x="240" y="280" fill="#0369A1" font-size="13" font-family="Consolas">TEXT</text>
+          <text x="370" y="280" fill="#DC2626" font-size="12" font-weight="600">NOT NULL</text>
+          <text x="540" y="280" fill="#64748B" font-size="12">Nama Resmi Tekstil UI</text>
+
+          <!-- Column 5: kategori_b3 -->
+          <line x1="50" y1="300" x2="670" y2="300" stroke="#E2E8F0" stroke-width="1"/>
+          <rect x="65" y="310" width="30" height="20" rx="4" fill="#FEE2E2"/>
+          <text x="80" y="324" fill="#991B1B" font-size="10" font-weight="bold" text-anchor="middle">IDX</text>
+          <text x="105" y="325" fill="#DC2626" font-size="13" font-weight="bold" font-family="Consolas">kategori_b3</text>
+          <text x="240" y="325" fill="#0369A1" font-size="13" font-family="Consolas">INTEGER</text>
+          <text x="370" y="325" fill="#DC2626" font-size="12" font-weight="bold">NOT NULL (0 atau 1)</text>
+          <text x="540" y="325" fill="#64748B" font-size="12">0: Non-B3 / 1: B3</text>
+
+          <!-- Column 6: confidence -->
+          <line x1="50" y1="345" x2="670" y2="345" stroke="#E2E8F0" stroke-width="1"/>
+          <text x="105" y="370" fill="#1E293B" font-size="13" font-weight="bold" font-family="Consolas">confidence</text>
+          <text x="240" y="370" fill="#0369A1" font-size="13" font-family="Consolas">REAL</text>
+          <text x="370" y="370" fill="#DC2626" font-size="12" font-weight="600">NOT NULL (0.0–1.0)</text>
+          <text x="540" y="370" fill="#64748B" font-size="12">Skor Probabilitas AI</text>
+
+          <!-- Column 7: is_uncertain -->
+          <line x1="50" y1="390" x2="670" y2="390" stroke="#E2E8F0" stroke-width="1"/>
+          <text x="105" y="415" fill="#1E293B" font-size="13" font-weight="bold" font-family="Consolas">is_uncertain</text>
+          <text x="240" y="415" fill="#0369A1" font-size="13" font-family="Consolas">INTEGER</text>
+          <text x="370" y="415" fill="#D97706" font-size="12" font-weight="600">DEFAULT 0 (0 atau 1)</text>
+          <text x="540" y="415" fill="#64748B" font-size="12">Flag Verifikasi Manual</text>
+
+          <!-- Column 8: catatan -->
+          <line x1="50" y1="435" x2="670" y2="435" stroke="#E2E8F0" stroke-width="1"/>
+          <text x="105" y="460" fill="#1E293B" font-size="13" font-weight="bold" font-family="Consolas">catatan</text>
+          <text x="240" y="460" fill="#0369A1" font-size="13" font-family="Consolas">TEXT</text>
+          <text x="370" y="460" fill="#64748B" font-size="12">NULLABLE</text>
+          <text x="540" y="460" fill="#64748B" font-size="12">Estimasi Berat (kg) / Rol</text>
+
+          <!-- Column 9: created_at -->
+          <line x1="50" y1="480" x2="670" y2="480" stroke="#E2E8F0" stroke-width="1"/>
+          <rect x="65" y="490" width="30" height="20" rx="4" fill="#FEE2E2"/>
+          <text x="80" y="504" fill="#991B1B" font-size="10" font-weight="bold" text-anchor="middle">IDX</text>
+          <text x="105" y="505" fill="#15803D" font-size="13" font-weight="bold" font-family="Consolas">created_at</text>
+          <text x="240" y="505" fill="#0369A1" font-size="13" font-family="Consolas">TEXT</text>
+          <text x="370" y="505" fill="#15803D" font-size="12" font-weight="bold">NOT NULL (ISO-8601)</text>
+          <text x="540" y="505" fill="#64748B" font-size="12">yyyy-MM-dd HH:mm:ss</text>
+        </g>
+
+        <!-- 2. B-TREE INDEXES SECTION (MIDDLE) -->
+        <g filter="url(#shadow2)">
+          <rect x="740" y="30" width="460" height="240" rx="16" fill="#ffffff" stroke="#2563EB" stroke-width="2"/>
+          <path d="M 740 46 A 16 16 0 0 1 756 30 L 1184 30 A 16 16 0 0 1 1200 46 L 1200 80 L 740 80 Z" fill="#2563EB"/>
+          <text x="970" y="62" fill="#ffffff" font-size="16" font-weight="bold" text-anchor="middle">B-TREE INDEXES (STRATEGI QUERY CEPAT)</text>
+
+          <!-- Index 1 -->
+          <rect x="760" y="95" width="420" height="60" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+          <text x="775" y="120" fill="#15803D" font-size="13" font-weight="bold" font-family="Consolas">INDEX: idx_scans_created_at ON scans(created_at)</text>
+          <text x="775" y="142" fill="#475569" font-size="11">Mempercepat agregasi 30 hari & riwayat terbaru (<5 ms).</text>
+
+          <!-- Index 2 -->
+          <rect x="760" y="165" width="420" height="60" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+          <text x="775" y="190" fill="#DC2626" font-size="13" font-weight="bold" font-family="Consolas">INDEX: idx_scans_b3 ON scans(kategori_b3)</text>
+          <text x="775" y="212" fill="#475569" font-size="11">Optimasi filter limbah B3 vs Non-B3 dan peringatan dini 7 hari.</text>
+        </g>
+
+        <!-- Connection lines from columns to index -->
+        <path d="M 670 325 L 705 325 L 705 195 L 735 195" fill="none" stroke="#DC2626" stroke-width="2" stroke-dasharray="4" marker-end="url(#db-arrow)"/>
+        <path d="M 670 505 L 720 505 L 720 125 L 735 125" fill="none" stroke="#15803D" stroke-width="2" stroke-dasharray="4" marker-end="url(#db-arrow)"/>
+
+        <!-- 3. DATA FLOW & TRANSACTION ARCHITECTURE (RIGHT) -->
+        <g filter="url(#shadow2)">
+          <rect x="1260" y="30" width="450" height="520" rx="16" fill="#ffffff" stroke="#0D9488" stroke-width="2"/>
+          <path d="M 1260 46 A 16 16 0 0 1 1276 30 L 1694 30 A 16 16 0 0 1 1710 46 L 1710 80 L 1260 80 Z" fill="#0D9488"/>
+          <text x="1485" y="62" fill="#ffffff" font-size="16" font-weight="bold" text-anchor="middle">ALUR INTEGRITAS & ATOMIC STORAGE</text>
+
+          <!-- Step A: Input -->
+          <rect x="1285" y="100" width="400" height="70" rx="8" fill="#F0FDFA" stroke="#5EEAD4" stroke-width="1.5"/>
+          <text x="1305" y="125" fill="#0F766E" font-size="13" font-weight="bold">1. Input Citra & Downsampling</text>
+          <text x="1305" y="145" fill="#334155" font-size="11">Citra dikompresi ke 640px JPG 70% (~50 KB).</text>
+          <text x="1305" y="160" fill="#0F766E" font-size="11" font-weight="bold">Mencegah lonjakan RAM & disk bloat.</text>
+
+          <!-- Step B: Atomic Commit -->
+          <rect x="1285" y="185" width="400" height="85" rx="8" fill="#F0FDFA" stroke="#5EEAD4" stroke-width="1.5"/>
+          <text x="1305" y="210" fill="#0F766E" font-size="13" font-weight="bold">2. Atomic SQLite Transaction</text>
+          <text x="1305" y="230" fill="#334155" font-size="11">Eksekusi: INSERT INTO scans (...) VALUES (...)</text>
+          <text x="1305" y="248" fill="#DC2626" font-size="11" font-weight="bold">🛡️ Rollback Guard: Jika query gagal, file foto langsung</text>
+          <text x="1305" y="262" fill="#DC2626" font-size="11" font-weight="bold">dihapus otomatis (Zero Orphan Files).</text>
+
+          <!-- Step C: Aggregation -->
+          <rect x="1285" y="285" width="400" height="75" rx="8" fill="#F0FDFA" stroke="#5EEAD4" stroke-width="1.5"/>
+          <text x="1305" y="310" fill="#0F766E" font-size="13" font-weight="bold">3. Agregasi Dashboard Real-Time</text>
+          <text x="1305" y="330" fill="#334155" font-size="11">Query SELECT COUNT(*) WHERE created_at >= ...</text>
+          <text x="1305" y="348" fill="#0F766E" font-size="11" font-weight="bold">Menghitung total, rasio Non-B3, dan alert bahaya.</text>
+
+          <!-- Step D: CSV Export -->
+          <rect x="1285" y="375" width="400" height="75" rx="8" fill="#F0FDFA" stroke="#5EEAD4" stroke-width="1.5"/>
+          <text x="1305" y="400" fill="#0F766E" font-size="13" font-weight="bold">4. Ekspor Laporan Standar CSV (Excel)</text>
+          <text x="1305" y="420" fill="#334155" font-size="11">Menghasilkan file CSV terstruktur untuk audit DLH</text>
+          <text x="1305" y="438" fill="#0F766E" font-size="11" font-weight="bold">dan rekapitulasi penjualan perca ke pengepul.</text>
+
+          <!-- Step E: Storage Isolation -->
+          <rect x="1285" y="465" width="400" height="65" rx="8" fill="#FEF2F2" stroke="#F87171" stroke-width="1.5"/>
+          <text x="1305" y="490" fill="#991B1B" font-size="12" font-weight="bold">🔒 Sandbox Internal Storage (Aman & Privat)</text>
+          <text x="1305" y="510" fill="#7F1D1D" font-size="11">Tersimpan di sandbox aplikasi (Nol izin eksternal).</text>
+        </g>
+
+        <!-- 4. BOTTOM ARCHITECTURAL SUMMARY BOX -->
+        <g filter="url(#shadow2)">
+          <rect x="50" y="580" width="1660" height="240" rx="16" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+          <text x="80" y="615" fill="#1E293B" font-size="16" font-weight="bold">KARAKTERISTIK TATA KELOLA MEMORI & KEAMANAN BASIS DATA TEXCYCLE</text>
+
+          <!-- Box 1 -->
+          <rect x="80" y="635" width="490" height="155" rx="10" fill="#ffffff" stroke="#E2E8F0" stroke-width="1.5"/>
+          <text x="105" y="665" fill="#15803D" font-size="14" font-weight="bold">1. Zero Memory Leak (Bitmap Caching)</text>
+          <text x="105" y="690" fill="#475569" font-size="12">• Thumbnail di riwayat dibatasi pada cacheWidth: 150</text>
+          <text x="105" y="710" fill="#475569" font-size="12">• Pratinjau hasil identifikasi dibatasi cacheWidth: 800</text>
+          <text x="105" y="730" fill="#475569" font-size="12">• Penggunaan memori stabil di bawah 95 MB RAM</text>
+          <text x="105" y="750" fill="#15803D" font-size="12" font-weight="bold">✓ Mencegah Out-Of-Memory (OOM) Crash</text>
+
+          <!-- Box 2 -->
+          <rect x="610" y="635" width="490" height="155" rx="10" fill="#ffffff" stroke="#E2E8F0" stroke-width="1.5"/>
+          <text x="635" y="665" fill="#0284C7" font-size="14" font-weight="bold">2. Proteksi Privasi & Play Protect Anti-Flag</text>
+          <text x="635" y="690" fill="#475569" font-size="12">• Tanpa WRITE_EXTERNAL_STORAGE & READ_STORAGE</text>
+          <text x="635" y="710" fill="#475569" font-size="12">• Aplikasi lain tidak dapat membaca data riwayat limbah</text>
+          <text x="635" y="730" fill="#475569" font-size="12">• Bebas tuduhan spyware / malware dari Play Protect</text>
+          <text x="635" y="750" fill="#0284C7" font-size="12" font-weight="bold">✓ Memenuhi Regulasi Privasi Data Modern</text>
+
+          <!-- Box 3 -->
+          <rect x="1140" y="635" width="540" height="155" rx="10" fill="#ffffff" stroke="#E2E8F0" stroke-width="1.5"/>
+          <text x="1165" y="665" fill="#D97706" font-size="14" font-weight="bold">3. Fitur Pemeliharaan Mandiri (SettingsView)</text>
+          <text x="1165" y="690" fill="#475569" font-size="12">• Diagnostik akurat menghitung total ruang terpakai (MB)</text>
+          <text x="1165" y="710" fill="#475569" font-size="12">• Tombol "Bersihkan Cache Foto" aman dari penghapusan SQLite</text>
+          <text x="1165" y="730" fill="#475569" font-size="12">• Opsi pembersihan otomatis riwayat berumur > 6 bulan</text>
+          <text x="1165" y="750" fill="#D97706" font-size="12" font-weight="bold">✓ Optimal untuk Smartphone Spesifikasi Pemula</text>
+        </g>
+      </svg>

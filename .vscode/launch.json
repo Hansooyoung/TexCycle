@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "TexCycle (Chrome Web)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome"
+    },
+    {
+      "name": "TexCycle (Android Device)",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "TexCycle (Windows Desktop)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "windows"
+    }
+  ]
+}
