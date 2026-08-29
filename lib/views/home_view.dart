@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../core/database/database_helper.dart';
+import '../core/localization/app_locale.dart';
 import 'scan_view.dart';
 import 'history_view.dart';
 import 'guide_view.dart';
@@ -43,7 +44,8 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final today = DateFormat('dd MMM yyyy', 'id_ID').format(DateTime.now());
+    final localeCode = AppLocale.isEn ? 'en_US' : 'id_ID';
+    final today = DateFormat('dd MMM yyyy', localeCode).format(DateTime.now());
 
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F6),
@@ -107,22 +109,22 @@ class _HomeViewState extends State<HomeView> {
                           )
                         ],
                       ),
-                      child: const Column(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'TexCycle - Pengelolaan Limbah',
-                            style: TextStyle(
+                            AppText.appTitle,
+                            style: const TextStyle(
                               color: Colors.white,
-                              fontSize: 17,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),
-                          SizedBox(height: 6),
+                          const SizedBox(height: 4),
                           Text(
-                            'Identifikasi cerdas limbah konveksi mikro berbasis edge computing on-device 100% offline.',
-                            style: TextStyle(color: Colors.white70, fontSize: 12),
+                            AppText.splashSubtitle,
+                            style: const TextStyle(color: Colors.white70, fontSize: 11),
                           ),
                         ],
                       ),
@@ -144,15 +146,15 @@ class _HomeViewState extends State<HomeView> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Expanded(
+                                Expanded(
                                   child: Row(
                                     children: [
-                                      Icon(Icons.insert_chart_outlined, size: 18, color: Color(0xFF1B5E20)),
-                                      SizedBox(width: 8),
+                                      const Icon(Icons.insert_chart_outlined, size: 18, color: Color(0xFF1B5E20)),
+                                      const SizedBox(width: 8),
                                       Expanded(
                                         child: Text(
-                                          'Statistik 30 Hari Terakhir',
-                                          style: TextStyle(
+                                          AppText.stat30Days,
+                                          style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 13,
                                             color: Colors.black87,
@@ -172,9 +174,9 @@ class _HomeViewState extends State<HomeView> {
                                     borderRadius: BorderRadius.circular(6),
                                     border: Border.all(color: Colors.green.shade200),
                                   ),
-                                  child: const Text(
-                                    'Mode Offline',
-                                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.green),
+                                  child: Text(
+                                    AppText.offlineStatus,
+                                    style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.green),
                                   ),
                                 )
                               ],
@@ -192,7 +194,7 @@ class _HomeViewState extends State<HomeView> {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        const Text('Total Scan', style: TextStyle(fontSize: 11, color: Colors.blueGrey), overflow: TextOverflow.ellipsis),
+                                        Text(AppText.totalScans, style: const TextStyle(fontSize: 11, color: Colors.blueGrey), overflow: TextOverflow.ellipsis),
                                         const SizedBox(height: 4),
                                         FittedBox(
                                           fit: BoxFit.scaleDown,
@@ -217,7 +219,7 @@ class _HomeViewState extends State<HomeView> {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        const Text('Non-B3', style: TextStyle(fontSize: 11, color: Colors.green), overflow: TextOverflow.ellipsis),
+                                        Text(AppText.nonB3Safe, style: const TextStyle(fontSize: 11, color: Colors.green), overflow: TextOverflow.ellipsis),
                                         const SizedBox(height: 4),
                                         FittedBox(
                                           fit: BoxFit.scaleDown,
@@ -242,7 +244,7 @@ class _HomeViewState extends State<HomeView> {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        const Text('B3 (Bahaya)', style: TextStyle(fontSize: 11, color: Colors.red), overflow: TextOverflow.ellipsis),
+                                        Text(AppText.b3Hazardous, style: const TextStyle(fontSize: 11, color: Colors.red), overflow: TextOverflow.ellipsis),
                                         const SizedBox(height: 4),
                                         FittedBox(
                                           fit: BoxFit.scaleDown,
@@ -304,13 +306,13 @@ class _HomeViewState extends State<HomeView> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Perhatian: Limbah B3 terdeteksi ${_stats['b3_last_7_days']}x dalam 7 hari terakhir',
+                                    AppText.b3WarningTitle,
                                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFF856404)),
                                   ),
                                   const SizedBox(height: 2),
-                                  const Text(
-                                    'Pastikan prosedur penyimpanan drum dan penanganan IPAL telah dipatuhi.',
-                                    style: TextStyle(fontSize: 11, color: Color(0xFF856404)),
+                                  Text(
+                                    AppText.b3WarningMsg,
+                                    style: const TextStyle(fontSize: 11, color: Color(0xFF856404)),
                                   ),
                                 ],
                               ),
@@ -332,23 +334,23 @@ class _HomeViewState extends State<HomeView> {
                       ),
                       onPressed: () async {
                         await Navigator.push(
-                          context,
+                           context,
                           MaterialPageRoute(builder: (context) => const ScanView()),
                         );
                         _loadStats();
                       },
-                      child: const Column(
+                      child: Column(
                         children: [
-                          Icon(Icons.camera_alt_outlined, size: 32, color: Colors.white),
-                          SizedBox(height: 6),
+                          const Icon(Icons.camera_alt_outlined, size: 32, color: Colors.white),
+                          const SizedBox(height: 6),
                           Text(
-                            'Identifikasi Limbah Tekstil',
-                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, letterSpacing: 0.3),
+                            AppText.btnScanNow,
+                            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, letterSpacing: 0.3),
                           ),
-                          SizedBox(height: 2),
+                          const SizedBox(height: 2),
                           Text(
-                            'Ambil foto atau unggah untuk analisis jenis dan penanganan',
-                            style: TextStyle(fontSize: 11, color: Colors.white70),
+                            AppText.distanceGuide,
+                            style: const TextStyle(fontSize: 11, color: Colors.white70),
                           ),
                         ],
                       ),
@@ -362,8 +364,8 @@ class _HomeViewState extends State<HomeView> {
                           child: _buildMenuCard(
                             icon: Icons.list_alt,
                             color: Colors.teal,
-                            title: 'Riwayat',
-                            subtitle: 'Daftar & Ekspor CSV',
+                            title: AppText.navHistory,
+                            subtitle: AppText.quickHistorySubtitle,
                             onTap: () async {
                               await Navigator.push(
                                 context,
@@ -378,8 +380,8 @@ class _HomeViewState extends State<HomeView> {
                           child: _buildMenuCard(
                             icon: Icons.lightbulb_outline,
                             color: Colors.amber.shade800,
-                            title: 'Panduan',
-                            subtitle: 'Tutorial DIY Upcycle',
+                            title: AppText.navGuide,
+                            subtitle: AppText.quickGuideSubtitle,
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -393,8 +395,8 @@ class _HomeViewState extends State<HomeView> {
                           child: _buildMenuCard(
                             icon: Icons.settings_outlined,
                             color: Colors.blueGrey,
-                            title: 'Pengaturan',
-                            subtitle: 'Manajemen Data',
+                            title: AppText.navSettings,
+                            subtitle: AppText.quickSettingsSubtitle,
                             onTap: () async {
                               await Navigator.push(
                                 context,

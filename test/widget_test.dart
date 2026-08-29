@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:texcycle/core/localization/app_locale.dart';
 import 'package:texcycle/views/guide_view.dart';
+import 'package:texcycle/views/settings_view.dart';
 import 'package:texcycle/views/splash_view.dart';
 
 void main() {
+  setUp(() {
+    AppLocale.setLocale('id');
+  });
+
   testWidgets('Pengujian Tampilan GuideView (Tutorial Upcycling Offline)', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
@@ -12,7 +18,7 @@ void main() {
     );
 
     // Verifikasi judul halaman
-    expect(find.text('Panduan Upcycling & Daur Ulang'), findsOneWidget);
+    expect(find.text(AppText.guideTitle), findsOneWidget);
 
     // Verifikasi keberadaan chip kategori
     expect(find.text('Semua Tutorial'), findsOneWidget);
@@ -43,10 +49,31 @@ void main() {
 
     // Verifikasi teks branding TexCycle
     expect(find.text('TexCycle'), findsOneWidget);
-    expect(find.text('Platform Tata Kelola & Daur Ulang Tekstil'), findsOneWidget);
+    expect(find.text(AppText.splashSubtitle), findsOneWidget);
     expect(find.byIcon(Icons.recycling_rounded), findsOneWidget);
     expect(find.byType(LinearProgressIndicator), findsOneWidget);
 
     await tester.pump(const Duration(milliseconds: 300));
+  });
+
+  testWidgets('Pengujian Interaksi Pilihan Bahasa di SettingsView', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: SettingsView(),
+      ),
+    );
+
+    // Verifikasi teks awal bahasa Indonesia
+    expect(find.text(AppText.langPrefTitle), findsOneWidget);
+    expect(find.text('ID'), findsOneWidget);
+    expect(find.text('EN'), findsOneWidget);
+
+    // Tap tombol 'EN'
+    await tester.tap(find.text('EN'));
+    await tester.pump(const Duration(milliseconds: 200));
+
+    // Verifikasi locale berubah menjadi EN
+    expect(AppLocale.isEn, isTrue);
+    expect(AppText.navHome, equals('Home'));
   });
 }

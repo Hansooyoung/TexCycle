@@ -3,6 +3,7 @@ import 'package:universal_io/io.dart';
 import 'package:flutter/material.dart';
 import '../core/constants/waste_data.dart';
 import '../core/database/database_helper.dart';
+import '../core/localization/app_locale.dart';
 import '../models/scan_record.dart';
 import '../services/csv_export_service.dart';
 import 'scan_view.dart';
@@ -322,13 +323,13 @@ class _HistoryViewState extends State<HistoryView> {
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Riwayat Identifikasi',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+        title: Text(
+          AppText.historyTitle,
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
         ),
         actions: [
           IconButton(
-            tooltip: 'Ekspor CSV',
+            tooltip: AppText.exportCsv,
             icon: const Icon(Icons.download, color: Colors.white),
             onPressed: _handleExportCsv,
           ),
@@ -346,7 +347,7 @@ class _HistoryViewState extends State<HistoryView> {
                   controller: _searchController,
                   onChanged: (_) => _loadScans(),
                   decoration: InputDecoration(
-                    hintText: 'Cari jenis limbah atau catatan...',
+                    hintText: AppText.searchHint,
                     prefixIcon: const Icon(Icons.search, size: 20),
                     suffixIcon: _searchController.text.isNotEmpty
                         ? IconButton(
@@ -367,13 +368,13 @@ class _HistoryViewState extends State<HistoryView> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      _buildFilterChip('all', 'Semua (${_scans.length})'),
+                      _buildFilterChip('all', '${AppText.filterAll} (${_scans.length})'),
                       const SizedBox(width: 8),
-                      _buildFilterChip('non_b3', 'Non-B3'),
+                      _buildFilterChip('non_b3', AppText.filterNonB3),
                       const SizedBox(width: 8),
-                      _buildFilterChip('b3', 'Limbah B3'),
+                      _buildFilterChip('b3', AppText.filterB3),
                       const SizedBox(width: 8),
-                      _buildFilterChip('uncertain', 'Perlu Verifikasi'),
+                      _buildFilterChip('uncertain', AppText.filterVerify),
                     ],
                   ),
                 ),

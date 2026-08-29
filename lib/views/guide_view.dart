@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:texcycle/core/constants/diy_data.dart';
+import 'package:texcycle/core/localization/app_locale.dart';
 
 class GuideView extends StatefulWidget {
   const GuideView({super.key});
@@ -26,9 +27,9 @@ class _GuideViewState extends State<GuideView> {
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Panduan Upcycling & Daur Ulang',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+        title: Text(
+          AppText.guideTitle,
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
         ),
       ),
       body: Column(
@@ -41,15 +42,15 @@ class _GuideViewState extends State<GuideView> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  _buildTabChip('semua', 'Semua Tutorial'),
+                  _buildTabChip('semua', AppLocale.isEn ? 'All Tutorials' : 'Semua Tutorial'),
                   const SizedBox(width: 8),
-                  _buildTabChip('kain_besar', 'Kain Besar'),
+                  _buildTabChip('kain_besar', AppLocale.isEn ? 'Large Scraps' : 'Kain Besar'),
                   const SizedBox(width: 8),
-                  _buildTabChip('kain_sedang', 'Kain Sedang'),
+                  _buildTabChip('kain_sedang', AppLocale.isEn ? 'Medium Scraps' : 'Kain Sedang'),
                   const SizedBox(width: 8),
-                  _buildTabChip('kain_kecil', 'Kain Kecil'),
+                  _buildTabChip('kain_kecil', AppLocale.isEn ? 'Small Scraps' : 'Kain Kecil'),
                   const SizedBox(width: 8),
-                  _buildTabChip('benang', 'Sisa Benang'),
+                  _buildTabChip('benang', AppLocale.isEn ? 'Yarn / Thread' : 'Sisa Benang'),
                 ],
               ),
             ),

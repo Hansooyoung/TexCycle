@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:texcycle/core/constants/waste_data.dart';
+import 'package:texcycle/core/localization/app_locale.dart';
 import 'package:texcycle/models/scan_record.dart';
 
 void main() {
@@ -148,6 +149,50 @@ void main() {
       expect(isMotionJitter(100.0, 128.0), isFalse); // Delta 28 (Batas stabil)
       expect(isMotionJitter(100.0, 135.0), isTrue);  // Delta 35 (Guncangan)
       expect(isMotionJitter(150.0, 110.0), isTrue);  // Delta 40 (Guncangan turun)
+    });
+  });
+
+  group('4. Pengujian Fitur Multi-Bahasa (AppLocale & AppText)', () {
+    test('Peralihan bahasa ID ke EN dan sebaliknya bekerja reaktif & konsisten', () {
+      AppLocale.setLocale('id');
+      expect(AppLocale.isEn, isFalse);
+      expect(AppLocale.currentLocale, equals('id'));
+      expect(AppText.navHome, equals('Beranda'));
+      expect(AppText.btnScanNow, equals('Identifikasi Limbah Sekarang'));
+
+      // Switch ke English (US)
+      AppLocale.setLocale('en');
+      expect(AppLocale.isEn, isTrue);
+      expect(AppLocale.currentLocale, equals('en'));
+      expect(AppText.navHome, equals('Home'));
+      expect(AppText.btnScanNow, equals('Scan Textile Waste Now'));
+
+      // Toggle kembali ke ID
+      AppLocale.toggleLocale();
+      expect(AppLocale.isEn, isFalse);
+      expect(AppLocale.currentLocale, equals('id'));
+      expect(AppText.navHome, equals('Beranda'));
+    });
+
+    test('Memastikan seluruh string AppText terdefinisi lengkap & non-empty di kedua bahasa', () {
+      for (final lang in ['id', 'en']) {
+        AppLocale.setLocale(lang);
+        expect(AppText.appTitle.isNotEmpty, isTrue);
+        expect(AppText.navHome.isNotEmpty, isTrue);
+        expect(AppText.navHistory.isNotEmpty, isTrue);
+        expect(AppText.navGuide.isNotEmpty, isTrue);
+        expect(AppText.navSettings.isNotEmpty, isTrue);
+        expect(AppText.stat30Days.isNotEmpty, isTrue);
+        expect(AppText.cameraReady.isNotEmpty, isTrue);
+        expect(AppText.cameraDark.isNotEmpty, isTrue);
+        expect(AppText.cameraDim.isNotEmpty, isTrue);
+        expect(AppText.cameraMotion.isNotEmpty, isTrue);
+        expect(AppText.resultTitle.isNotEmpty, isTrue);
+        expect(AppText.historyTitle.isNotEmpty, isTrue);
+        expect(AppText.guideTitle.isNotEmpty, isTrue);
+        expect(AppText.settingsTitle.isNotEmpty, isTrue);
+        expect(AppText.langPrefTitle.isNotEmpty, isTrue);
+      }
     });
   });
 }

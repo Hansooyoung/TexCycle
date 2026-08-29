@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import '../core/database/database_helper.dart';
+import '../core/localization/app_locale.dart';
 import '../services/classifier_service.dart';
 import 'home_view.dart';
 
@@ -17,7 +18,7 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
 
-  String _loadingStatus = 'Menginisialisasi Sistem TexCycle...';
+  String _loadingStatus = AppText.splashPreloadingDb;
   double _progressValue = 0.15;
 
   @override
@@ -65,7 +66,7 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
       // Tahap 2: Pra-pemanasan Model TFLite On-Device
       if (mounted) {
         setState(() {
-          _loadingStatus = 'Memuat Mesin AI MobileNetV2...';
+          _loadingStatus = AppText.splashPreloadingAi;
           _progressValue = 0.75;
         });
       }
@@ -76,7 +77,7 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
       // Tahap 3: Deteksi Sensor Kamera
       if (mounted) {
         setState(() {
-          _loadingStatus = 'Mengalibrasi Lensa Kamera...';
+          _loadingStatus = AppLocale.isEn ? 'Calibrating Camera Lens...' : 'Mengalibrasi Lensa Kamera...';
           _progressValue = 0.95;
         });
       }
@@ -87,7 +88,7 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
       // Tahap 4: Finalisasi
       if (mounted) {
         setState(() {
-          _loadingStatus = 'Sistem Siap Digunakan!';
+          _loadingStatus = AppText.splashPreloadingDone;
           _progressValue = 1.0;
         });
       }
@@ -174,7 +175,7 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    'Platform Tata Kelola & Daur Ulang Tekstil',
+                    AppText.splashSubtitle,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 13,
@@ -211,7 +212,7 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    'Versi 1.2 • 100% On-Device Engine',
+                    AppText.splashVersion,
                     style: TextStyle(
                       fontSize: 10,
                       color: Colors.white.withValues(alpha: 0.4),

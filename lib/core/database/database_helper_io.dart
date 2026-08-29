@@ -140,38 +140,47 @@ class DatabaseHelper {
   }
 
   Future<Map<String, dynamic>> getStorageUsage() async {
-    final db = await instance.database;
-    final dbPath = await getDatabasesPath();
-    final dbFile = File(join(dbPath, 'texcycle.db'));
-    int dbBytes = 0;
-    if (await dbFile.exists()) {
-      dbBytes = await dbFile.length();
+    try {
+      final db = await instance.database;
+      final dbPath = await getDatabasesPath();
+      final dbFile = File(join(dbPath, 'texcycle.db'));
+      int dbBytes = 0;
+      if (await dbFile.exists()) {
+        dbBytes = await dbFile.length();
+      }
+
+      final allScans = await db.query('scans', columns: ['image_path']);
+      int imagesBytes = 0;
+      int photoCount = 0;
+
+      for (var row in allScans) {
+        final path = row['image_path'] as String;
+        try {
+          final f = File(path);
+          if (await f.exists()) {
+            imagesBytes += await f.length();
+            photoCount++;
+          }
+        } catch (_) {}
+      }
+
+      int totalBytes = dbBytes + imagesBytes;
+      double totalMb = totalBytes / (1024 * 1024);
+
+      return {
+        'total_bytes': totalBytes,
+        'total_mb': totalMb,
+        'photo_count': photoCount,
+        'db_size_kb': (dbBytes / 1024).toStringAsFixed(1),
+      };
+    } catch (_) {
+      return {
+        'total_bytes': 0,
+        'total_mb': 0.0,
+        'photo_count': 0,
+        'db_size_kb': '0.0',
+      };
     }
-
-    final allScans = await db.query('scans', columns: ['image_path']);
-    int imagesBytes = 0;
-    int photoCount = 0;
-
-    for (var row in allScans) {
-      final path = row['image_path'] as String;
-      try {
-        final f = File(path);
-        if (await f.exists()) {
-          imagesBytes += await f.length();
-          photoCount++;
-        }
-      } catch (_) {}
-    }
-
-    int totalBytes = dbBytes + imagesBytes;
-    double totalMb = totalBytes / (1024 * 1024);
-
-    return {
-      'total_bytes': totalBytes,
-      'total_mb': totalMb,
-      'photo_count': photoCount,
-      'db_size_kb': (dbBytes / 1024).toStringAsFixed(1),
-    };
   }
 
   Future<int> deleteScan(int id, {String? imagePath}) async {

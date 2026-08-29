@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:universal_io/io.dart';
+import '../core/localization/app_locale.dart';
 import '../services/classifier_service.dart';
 import 'result_view.dart';
 
@@ -134,7 +135,7 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
         _isCameraError = false;
         _isFlashOn = false;
         _currentZoom = 1.0;
-        _feedbackMessage = 'Pencahayaan cukup • Kamera stabil & siap potret';
+        _feedbackMessage = AppText.cameraReady;
         _feedbackColor = Colors.greenAccent;
         _feedbackIcon = Icons.check_circle_outline;
       });
@@ -199,27 +200,27 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
   void _updateSensorFeedback(double lum, bool isMotion) {
     if (lum < 42.0) {
       // Kategori 1: Gelap Parah
-      _feedbackMessage = 'Pencahayaan Sangat Gelap • Aktifkan Flash';
+      _feedbackMessage = AppText.cameraDark;
       _feedbackColor = Colors.redAccent;
       _feedbackIcon = Icons.brightness_low;
     } else if (lum < 75.0) {
       // Kategori 2: Redup / Kurang Jelas
-      _feedbackMessage = 'Pencahayaan Redup • Sarankan Nyalakan Flash';
+      _feedbackMessage = AppText.cameraDim;
       _feedbackColor = Colors.amberAccent;
       _feedbackIcon = Icons.brightness_medium;
     } else if (isMotion) {
       // Kategori 3: Guncangan Terdeteksi
-      _feedbackMessage = 'Gerakan Terdeteksi • Tahan Kamera Lebih Stabil';
+      _feedbackMessage = AppText.cameraMotion;
       _feedbackColor = Colors.amberAccent;
       _feedbackIcon = Icons.vibration;
     } else if (lum > 225.0) {
       // Kategori 4: Silau Berlebih
-      _feedbackMessage = 'Pencahayaan Terlalu Silau • Geser Sudut Objek';
+      _feedbackMessage = AppText.cameraGlare;
       _feedbackColor = Colors.orangeAccent;
       _feedbackIcon = Icons.wb_sunny;
     } else {
       // Kategori 5: Kondisi Prima
-      _feedbackMessage = 'Pencahayaan & Ketajaman Prima • Jarak 30–40 cm';
+      _feedbackMessage = AppText.cameraReady;
       _feedbackColor = Colors.greenAccent;
       _feedbackIcon = Icons.check_circle_outline;
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/database/database_helper.dart';
+import '../core/localization/app_locale.dart';
 import '../services/csv_export_service.dart';
 
 class SettingsView extends StatefulWidget {
@@ -26,12 +27,21 @@ class _SettingsViewState extends State<SettingsView> {
 
   Future<void> _loadStorageInfo() async {
     setState(() => _loadingStorage = true);
-    final info = await DatabaseHelper.instance.getStorageUsage();
-    if (mounted) {
-      setState(() {
-        _storageInfo = info;
-        _loadingStorage = false;
-      });
+    try {
+      final info = await DatabaseHelper.instance.getStorageUsage();
+      if (mounted) {
+        setState(() {
+          _storageInfo = info;
+        });
+      }
+    } catch (_) {
+      // Fallback aman jika database belum siap
+    } finally {
+      if (mounted) {
+        setState(() {
+          _loadingStorage = false;
+        });
+      }
     }
   }
 
@@ -40,7 +50,7 @@ class _SettingsViewState extends State<SettingsView> {
     if (scans.isEmpty) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Belum ada data scan untuk diekspor.')),
+          SnackBar(content: Text(AppLocale.isEn ? 'No scan records to export.' : 'Belum ada data scan untuk diekspor.')),
         );
       }
       return;
@@ -53,14 +63,14 @@ class _SettingsViewState extends State<SettingsView> {
       } else {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('CSV berhasil disimpan di:\n${file.path}')),
+            SnackBar(content: Text('${AppLocale.isEn ? 'CSV saved to:' : 'CSV berhasil disimpan di:'}\n${file.path}')),
           );
         }
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Gagal mengekspor data: $e')),
+          SnackBar(content: Text('${AppLocale.isEn ? 'Export failed:' : 'Gagal mengekspor data:'} $e')),
         );
       }
     }
@@ -70,13 +80,15 @@ class _SettingsViewState extends State<SettingsView> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Hapus Data > 6 Bulan?'),
-        content: const Text('Tindakan ini akan menghapus riwayat scan dan file gambar yang berumur lebih dari 6 bulan untuk menghemat ruang memori HP.'),
+        title: Text(AppLocale.isEn ? 'Delete Records > 6 Months?' : 'Hapus Data > 6 Bulan?'),
+        content: Text(AppLocale.isEn
+            ? 'This removes older scan records and photos to free up phone storage.'
+            : 'Tindakan ini akan menghapus riwayat scan dan file gambar berumur lebih dari 6 bulan untuk melegakan memori.'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Batal')),
+          TextButton(onPressed: () => Navigator.pop(context, false), child: Text(AppText.cancel)),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Hapus', style: TextStyle(color: Colors.red)),
+            child: Text(AppText.delete, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -87,7 +99,7 @@ class _SettingsViewState extends State<SettingsView> {
       await _loadStorageInfo();
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('$count catatan riwayat lama berhasil dibersihkan.')),
+          SnackBar(content: Text(AppLocale.isEn ? '$count old records cleaned.' : '$count catatan riwayat lama dibersihkan.')),
         );
       }
     }
@@ -97,13 +109,15 @@ class _SettingsViewState extends State<SettingsView> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Hapus Seluruh Data'),
-        content: const Text('Perhatian: Semua riwayat scan, foto limbah terkompresi, dan statistik akan dihapus secara permanen dari perangkat ini.'),
+        title: Text(AppText.deleteAllRecordsBtn),
+        content: Text(AppLocale.isEn
+            ? 'Caution: All scan history, photos, and metrics will be permanently deleted.'
+            : 'Perhatian: Semua riwayat scan, foto limbah, dan statistik akan dihapus permanen dari perangkat ini.'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Batal')),
+          TextButton(onPressed: () => Navigator.pop(context, false), child: Text(AppText.cancel)),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Hapus Permanen', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+            child: Text(AppText.delete, style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -114,7 +128,7 @@ class _SettingsViewState extends State<SettingsView> {
       await _loadStorageInfo();
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Seluruh data riwayat berhasil direset.')),
+          SnackBar(content: Text(AppLocale.isEn ? 'All history records cleared.' : 'Seluruh data riwayat berhasil direset.')),
         );
       }
     }
@@ -135,15 +149,68 @@ class _SettingsViewState extends State<SettingsView> {
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Pengaturan & Penyimpanan',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+        title: Text(
+          AppText.settingsTitle,
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
         ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          // Kartu Informasi Penggunaan Storage HP (Anomali #16)
+          // 1. Pilihan Bahasa (Language Selection Card)
+          Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+            elevation: 1,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: Row(
+                children: [
+                  const Icon(Icons.translate_rounded, color: Color(0xFF1B5E20), size: 24),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppText.langPrefTitle,
+                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          AppText.langPrefSubtitle,
+                          style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SegmentedButton<String>(
+                    segments: const [
+                      ButtonSegment(
+                        value: 'id',
+                        label: Text('ID', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+                      ),
+                      ButtonSegment(
+                        value: 'en',
+                        label: Text('EN', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+                      ),
+                    ],
+                    selected: {AppLocale.currentLocale},
+                    onSelectionChanged: (Set<String> newSelection) {
+                      setState(() {
+                        AppLocale.setLocale(newSelection.first);
+                      });
+                    },
+                    style: const ButtonStyle(
+                      visualDensity: VisualDensity.compact,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // 2. Kartu Informasi Penggunaan Storage HP
           Card(
             color: Colors.green.shade50,
             shape: RoundedRectangleBorder(
@@ -160,10 +227,10 @@ class _SettingsViewState extends State<SettingsView> {
                     children: [
                       const Icon(Icons.sd_storage_outlined, color: Color(0xFF1B5E20), size: 22),
                       const SizedBox(width: 8),
-                      const Expanded(
+                      Expanded(
                         child: Text(
-                          'Kapasitas Penyimpanan Perangkat',
-                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF1B5E20)),
+                          AppText.storageTitle,
+                          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF1B5E20)),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -180,12 +247,14 @@ class _SettingsViewState extends State<SettingsView> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    '$totalMb MB Terpakai',
+                    AppLocale.isEn ? '$totalMb MB Used' : '$totalMb MB Terpakai',
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '• $photoCount foto limbah terkompresi (JPG 70%)\n• Ukuran database SQLite: $dbSize KB',
+                    AppLocale.isEn
+                        ? '• $photoCount compressed waste photos (JPG 70%)\n• SQLite Database: $dbSize KB'
+                        : '• $photoCount foto limbah terkompresi (JPG 70%)\n• Ukuran database SQLite: $dbSize KB',
                     style: TextStyle(fontSize: 11, color: Colors.grey.shade700, height: 1.3),
                   ),
                 ],
@@ -194,9 +263,9 @@ class _SettingsViewState extends State<SettingsView> {
           ),
           const SizedBox(height: 16),
 
-          const Text(
-            'MANAJEMEN DATA LOKAL',
-            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey, letterSpacing: 0.5),
+          Text(
+            AppLocale.isEn ? 'LOCAL DATA MANAGEMENT' : 'MANAJEMEN DATA LOKAL',
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey, letterSpacing: 0.5),
           ),
           const SizedBox(height: 8),
 
@@ -207,70 +276,70 @@ class _SettingsViewState extends State<SettingsView> {
               children: [
                 ListTile(
                   leading: const Icon(Icons.file_download_outlined, color: Colors.green),
-                  title: const Text('Ekspor Riwayat ke CSV', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-                  subtitle: const Text('Simpan tabel rekapitulasi limbah di memori HP (Format Excel)', style: TextStyle(fontSize: 11)),
+                  title: Text(AppText.exportCsv, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                  subtitle: Text(AppLocale.isEn ? 'Save inventory logs to phone storage (Excel format)' : 'Simpan tabel rekapitulasi limbah di memori HP (Format Excel)', style: const TextStyle(fontSize: 11)),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () => _exportCsv(share: false),
                 ),
                 const Divider(height: 1),
                 ListTile(
                   leading: const Icon(Icons.share_outlined, color: Colors.blue),
-                  title: const Text('Bagikan CSV via WhatsApp / Email', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-                  subtitle: const Text('Kirim laporan manifest limbah ke DLH atau arsip pribadi', style: TextStyle(fontSize: 11)),
+                  title: Text(AppText.shareCsv, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                  subtitle: Text(AppLocale.isEn ? 'Send report via WhatsApp or Email' : 'Kirim laporan manifest limbah ke DLH atau arsip', style: const TextStyle(fontSize: 11)),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () => _exportCsv(share: true),
                 ),
                 const Divider(height: 1),
                 ListTile(
                   leading: const Icon(Icons.cleaning_services_outlined, color: Colors.orange),
-                  title: const Text('Hapus Riwayat > 6 Bulan', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-                  subtitle: const Text('Bersihkan foto & data lama untuk melegakan memori', style: TextStyle(fontSize: 11)),
+                  title: Text(AppText.deleteOldRecordsBtn, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                  subtitle: Text(AppLocale.isEn ? 'Clear older records to save storage space' : 'Bersihkan foto & data lama untuk melegakan memori', style: const TextStyle(fontSize: 11)),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: _deleteOlderThan6Months,
                 ),
                 const Divider(height: 1),
                 ListTile(
                   leading: const Icon(Icons.delete_forever_outlined, color: Colors.red),
-                  title: const Text('Hapus Semua Riwayat Data', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.red)),
-                  subtitle: const Text('Reset total database SQLite dan seluruh foto scan', style: TextStyle(fontSize: 11)),
+                  title: Text(AppText.deleteAllRecordsBtn, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.red)),
+                  subtitle: Text(AppLocale.isEn ? 'Reset local SQLite database and all photos' : 'Reset total database SQLite dan seluruh foto scan', style: const TextStyle(fontSize: 11)),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: _clearAllData,
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 20),
 
-          const Text(
-            'INFORMASI APLIKASI',
-            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey, letterSpacing: 0.5),
+          Text(
+            AppLocale.isEn ? 'SYSTEM & PRIVACY' : 'INFORMASI & PRIVASI SISTEM',
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey, letterSpacing: 0.5),
           ),
           const SizedBox(height: 8),
 
           Card(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
             elevation: 1,
-            child: const Padding(
-              padding: EdgeInsets.all(16.0),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.eco, color: Colors.green, size: 28),
-                      SizedBox(width: 10),
+                      const Icon(Icons.eco, color: Colors.green, size: 28),
+                      const SizedBox(width: 10),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'TexCycle v1.2',
-                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              AppText.appTitle,
+                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
-                              'Advance Lens Edition • 100% Offline AI',
-                              style: TextStyle(fontSize: 12, color: Colors.grey),
+                              AppText.appVersionLabel,
+                              style: const TextStyle(fontSize: 11, color: Colors.grey),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ],
@@ -278,10 +347,10 @@ class _SettingsViewState extends State<SettingsView> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Text(
-                    'TexCycle adalah platform cerdas mandiri pengelolaan limbah tekstil untuk industri konveksi mikro, penjahit, dan UMKM garmen guna memaksimalkan potensi ekonomi sirkular dan memastikan kepatuhan regulasi lingkungan.\n\nMode: 100% On-Device (Edge Computing & Penyimpanan Terenkripsi Lokal)',
-                    style: TextStyle(fontSize: 12, height: 1.4, color: Colors.black87),
+                    AppText.privacyDesc,
+                    style: const TextStyle(fontSize: 11, height: 1.35, color: Colors.black87),
                   ),
                 ],
               ),

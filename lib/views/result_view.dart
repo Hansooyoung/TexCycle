@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import '../core/constants/waste_data.dart';
 import '../core/constants/diy_data.dart';
 import '../core/database/database_helper.dart';
+import '../core/localization/app_locale.dart';
 import '../models/scan_record.dart';
 import '../services/classifier_service.dart';
 import 'guide_view.dart';
@@ -122,7 +123,7 @@ class _ResultViewState extends State<ResultView> {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          isB3 ? 'Hasil Identifikasi (Limbah B3)' : 'Hasil Identifikasi',
+          AppText.resultTitle,
           style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
         ),
       ),
@@ -166,7 +167,7 @@ class _ResultViewState extends State<ResultView> {
                           const Icon(Icons.analytics_outlined, color: Colors.greenAccent, size: 14),
                           const SizedBox(width: 4),
                           Text(
-                            'Akurasi: ${(widget.classification.confidence * 100).toStringAsFixed(1)}%',
+                            '${AppLocale.isEn ? 'Confidence' : 'Akurasi'}: ${(widget.classification.confidence * 100).toStringAsFixed(1)}%',
                             style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
                           ),
                         ],
@@ -187,9 +188,9 @@ class _ResultViewState extends State<ResultView> {
                               color: Colors.amber.shade700,
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: const Text(
-                              'Perlu Verifikasi',
-                              style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+                            child: Text(
+                              AppLocale.isEn ? 'Verify' : 'Perlu Verifikasi',
+                              style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
                             ),
                           ),
                         Container(
@@ -200,7 +201,9 @@ class _ResultViewState extends State<ResultView> {
                             boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4)],
                           ),
                           child: Text(
-                            isB3 ? 'Kategori B3' : 'Kategori Non-B3',
+                            isB3
+                                ? (AppLocale.isEn ? 'Hazardous (B3)' : 'Kategori B3')
+                                : (AppLocale.isEn ? 'Eco-Friendly (Non-B3)' : 'Kategori Non-B3'),
                             style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -559,7 +562,9 @@ class _ResultViewState extends State<ResultView> {
                   ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
                   : Icon(_isSaved ? Icons.check : Icons.save),
               label: Text(
-                _isSaved ? 'Sudah Tersimpan di Riwayat' : 'Simpan Ke Riwayat',
+                _isSaved
+                    ? (AppLocale.isEn ? 'Saved to History' : 'Sudah Tersimpan di Riwayat')
+                    : AppText.btnSaveRecord,
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
               ),
             ),
@@ -580,7 +585,10 @@ class _ResultViewState extends State<ResultView> {
                   );
                 },
                 icon: const Icon(Icons.menu_book),
-                label: const Text('Buka Tutorial Upcycling DIY', style: TextStyle(fontWeight: FontWeight.bold)),
+                label: Text(
+                  AppLocale.isEn ? 'Open DIY Upcycling Guides' : 'Buka Tutorial Upcycling DIY',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(height: 10),
             ],
@@ -593,7 +601,7 @@ class _ResultViewState extends State<ResultView> {
                 );
               },
               icon: const Icon(Icons.refresh),
-              label: const Text('Scan Limbah Lain'),
+              label: Text(AppLocale.isEn ? 'Scan Another Fabric' : 'Scan Limbah Lain'),
             ),
           ],
         ),

@@ -588,10 +588,10 @@
     <div class="spec-card" style="margin-bottom: 0;">
       <div class="spec-card-header">
         <span class="spec-card-title">2.7 Layar 7: Pengaturan &amp; Memori (<code>SettingsView</code>)</span>
-        <span class="spec-card-badge">Maintenance</span>
+        <span class="spec-card-badge">Bilingual &bull; Storage</span>
       </div>
-      <p style="font-size: 7.6pt; color: #334155; margin-bottom: 2px;"><strong>Tampilan:</strong> Profil versi 1.2; Panel diagnostik ruang simpan nyata (ukuran database &amp; folder foto dalam MB); Tombol <em>Bersihkan Cache Foto Sementara</em>; Panel penegasan privasi offline.</p>
-      <p style="font-size: 7.6pt; color: #334155;"><strong>Fitur &amp; Alur:</strong> Kalkulasi konsumsi memori disk real-time via <code>path_provider</code>. Pengguna menekan satu tombol pembersih cache untuk melegakan memori smartphone tanpa merusak riwayat SQLite.</p>
+      <p style="font-size: 7.6pt; color: #334155; margin-bottom: 2px;"><strong>Tampilan:</strong> Tombol toggle bahasa bilingual reaktif (ID / EN); Profil versi 1.2; Panel diagnostik ruang simpan (MB SQLite &amp; Foto); Tombol ekspor/hapus riwayat lama; Penegasan privasi offline.</p>
+      <p style="font-size: 7.6pt; color: #334155;"><strong>Fitur &amp; Alur:</strong> Pengalihan bahasa instan 1-tap via <code>AppLocale</code> &amp; <code>AppText</code> (Bahasa Indonesia &amp; English US alami tanpa text bloat); kalkulasi ruang simpan disk HP real-time via <code>path_provider</code>.</p>
     </div>
   </div>
 
@@ -602,7 +602,7 @@
       <strong>Inovasi Edge Computing On-Device:</strong> Seluruh inferensi AI dieksekusi langsung pada CPU smartphone via library C++ TensorFlow Lite via JNI. Latensi cepat (&lt;68 ms) tanpa biaya sewa server cloud.
     </div>
     <div class="callout callout-warning">
-      <strong>Validasi 3-Tier Confidence:</strong> Membagi skor probabilitas ke 3 zona: Tier 1 Valid (&ge; 70%), Tier 2 Verifikasi Manual (50–70%), dan Tier 3 Tolak (&lt; 50%) untuk mencegah misklasifikasi bahan kimia.
+      <strong>Validasi 3-Tier &amp; Multi-Language:</strong> Membagi skor kepastian ke 3 zona (Valid, Verifikasi, Tolak) serta dukungan dwibahasa reaktif seketika (ID &amp; EN) dengan terminologi lugas tanpa teks berlebih.
     </div>
     <div class="callout callout-danger">
       <strong>Atomic Rollback &amp; Zero Orphan Files:</strong> Menyimpan citra terkompresi 640px JPG 70%, lalu mengeksekusi insert database. Jika SQLite gagal, foto seketika dihapus otomatis dari penyimpanan HP.

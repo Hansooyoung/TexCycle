@@ -137,15 +137,17 @@ Aplikasi **TexCycle Versi 1.2** dirancang dengan arsitektur navigasi datar (*fla
 
 ### 2.7 Layar 7: Pengaturan & Diagnostik Memori (`SettingsView`)
 * **Komponen Tampilan (Ada Apa Saja):**
+  - **Kartu Pilihan Bahasa Bilingual**: Pemilih tombol segmen (`ID` / `EN`) untuk beralih instan antara **Bahasa Indonesia** dan **English (US)** secara ringkas, alami, dan bebas teks berlebih (*Zero Text Bloat*).
   - Kartu Profil Aplikasi *TexCycle v1.2 Advance Lens Edition*.
   - Panel Diagnostik Ruang Penyimpanan Nyata: Menampilkan ukuran data SQLite dan folder foto (dalam satuan MB).
-  - Tombol Pemeliharaan: *"Bersihkan Cache Foto Sementara"*.
+  - Tombol Pemeliharaan: *"Ekspor Riwayat ke CSV"*, *"Hapus Riwayat > 6 Bulan"*, dan *"Reset Data Riwayat"*.
   - Panel Informasi Profil Keamanan, Lisensi, dan Mode 100% Offline.
 * **Fitur Teknis (Fitur Apa Saja):**
+  - **Arsitektur Lokalisasi Reaktif (`AppLocale` & `AppText`)**: Pengalihan bahasa 1-tap yang langsung memperbarui seluruh UI secara global tanpa perlu merestart aplikasi. Teks dirancang ringkas (1–4 kata per aksi) untuk mencegah *text-overflow*.
   - **Kalkulasi Ruang Simpan Real-Time**: Menghitung ukuran memori internal HP yang digunakan secara nyata melalui `path_provider`.
   - **Pembersihan Cache Aman**: Menghapus file cache gambar sementara tanpa merusak catatan penting di database SQLite.
 * **Alur & Cara Kerja (Bagaimana Cara Kerjanya):**
-  Pengguna masuk ke menu pengaturan untuk mengecek berapa megabyte ruang penyimpanan HP yang digunakan aplikasi. Apabila kapasitas memori smartphone mulai penuh, pengguna cukup menekan tombol "Bersihkan Cache Foto Sementara" untuk melegakan memori seketika.
+  Pengguna masuk ke menu pengaturan untuk mengganti bahasa aplikasi ke English (US) atau kembali ke Bahasa Indonesia cukup dengan menyentuh tombol toggle `ID` / `EN`. Seluruh menu aplikasi seketika berganti bahasa. Pengguna juga dapat memeriksa berapa megabyte ruang penyimpanan HP yang terpakai dan mengekspor laporan manifest CSV.
 
 ---
 
@@ -158,9 +160,11 @@ Aplikasi **TexCycle Versi 1.2** dirancang dengan arsitektur navigasi datar (*fla
 | **F-03** | **Kepatuhan Regulasi DLH (B3)** | Panduan 5 Prosedur Wajib DLH otomatis saat terdeteksi limbah berbahaya. | Mencegah sanksi pidana lingkungan bagi UMKM. |
 | **F-04** | **Valuasi & Upcycling Non-B3** | Panduan pemanfaatan kembali dan taksiran harga jual per kilogram. | Membuka peluang pendapatan sampingan dari sisa potongan kain. |
 | **F-05** | **Kompresi Citra Otomatis** | Citra kamera otomatis dikompresi ke 640px dengan kualitas JPG 70%. | Ukuran file terpangkas dari ~4 MB menjadi ~50 KB (hemat 98.7% memori). |
-| **F-06** | **Atomic Database Rollback** | Transaksi penghapusan file foto jika operasi insert SQLite gagal. | Menjamin nol file sampah (*zero orphan files*) di memori HP. |
-| **F-07** | **Ekspor Laporan CSV** | Ekspor seluruh riwayat identifikasi ke berkas CSV standar Excel. | Terintegrasi dengan `share_plus` untuk pengiriman via WA/Email. |
-| **F-08** | **Universal I/O Cross-Platform** | Dukungan ganda platform Android dan Google Chrome Web. | Memudahkan demonstrasi penelitian di laptop penguji maupun di HP UMKM. |
+| **F-06** | **Advance Lens HUD Sensing** | Evaluasi pencahayaan real-time & deteksi goyangan kamera. | Sampling Y-Luminance 4 FPS pada CPU < 1%. |
+| **F-07** | **Penyimpanan Lokal Atomik** | Database SQLite relasional dengan integritas rollback otomatis. | Bebas file sampah yatim (zero orphan files). |
+| **F-08** | **Katalog DIY Offline** | Repositori tutorial kerajinan kain perca siap saji. | Akses 100% tanpa kuota internet. |
+| **F-09** | **Ekspor Manifest CSV** | Generate tabel rekapitulasi limbah berformat Excel. | Kompatibel dengan sistem pelaporan DLH. |
+| **F-10** | **Bilingual Multi-Language (ID & EN)** | Pilihan bahasa Indonesia & English US alami, ringkas, dan bebas text-bloat. | Reaktif seketika tanpa restart via `AppLocale`. |
 
 ---
 

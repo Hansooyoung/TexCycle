@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'core/localization/app_locale.dart';
 import 'views/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Inisialisasi format tanggal lokal Indonesia
+  // Inisialisasi format tanggal lokal Indonesia & English
   await initializeDateFormatting('id_ID', null);
+  await initializeDateFormatting('en_US', null);
 
   runApp(const TexCycleApp());
 }
@@ -16,20 +18,26 @@ class TexCycleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'TexCycle',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF1B5E20), // Hijau Lingkungan
-          primary: const Color(0xFF1B5E20),
-          secondary: const Color(0xFF2E7D32),
-        ),
-        scaffoldBackgroundColor: const Color(0xFFF4F7F6),
-        fontFamily: 'Roboto',
-      ),
-      home: const SplashView(),
+    return ValueListenableBuilder<String>(
+      valueListenable: AppLocale.localeNotifier,
+      builder: (context, currentLang, child) {
+        return MaterialApp(
+          title: AppText.appTitle,
+          locale: Locale(currentLang),
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color(0xFF1B5E20), // Hijau Lingkungan
+              primary: const Color(0xFF1B5E20),
+              secondary: const Color(0xFF2E7D32),
+            ),
+            scaffoldBackgroundColor: const Color(0xFFF4F7F6),
+            fontFamily: 'Roboto',
+          ),
+          home: const SplashView(),
+        );
+      },
     );
   }
 }
