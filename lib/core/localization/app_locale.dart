@@ -47,8 +47,8 @@ class AppText {
       ? 'System Ready • Launching TexCycle'
       : 'Sistem Siap • Membuka TexCycle';
   static String get splashVersion => AppLocale.isEn
-      ? 'v1.2 • 100% On-Device Engine'
-      : 'Versi 1.2 • 100% On-Device Engine';
+      ? 'v1.3 • 100% On-Device Engine'
+      : 'Versi 1.3 • 100% On-Device Engine';
 
   // Home Screen
   static String get offlineStatus => AppLocale.isEn
@@ -170,5 +170,27 @@ class AppText {
   static String get privacyDesc => AppLocale.isEn
       ? 'All photos, classification models, and database records remain exclusively on your device. Zero cloud sync, zero data leaks.'
       : 'Seluruh foto, model AI, dan data riwayat disimpan secara lokal di perangkat Anda tanpa pernah dikirim ke server luar.';
-  static String get appVersionLabel => AppLocale.isEn ? 'Version 1.2.0 • Production Release' : 'Versi 1.2.0 • Production Release';
+  static String get appVersionLabel => AppLocale.isEn ? 'Version 1.3.0 • Production Release' : 'Versi 1.3.0 • Production Release';
+
+  // Additional Result & Guide View Labels
+  static String get sizeOrCharacteristics => AppLocale.isEn ? 'Size / Shape:' : 'Ukuran/Bentuk:';
+  static String get economicValueTitle => AppLocale.isEn
+      ? 'Recommendations & Economic Potential'
+      : 'Rekomendasi & Potensi Nilai Ekonomi';
+  static String get marketValuePrefix => AppLocale.isEn ? 'Estimated Scrap Value:' : 'Estimasi Nilai Jual:';
+  static String get dlhTitleBadge => AppLocale.isEn
+      ? '5 DLH Mandatory Protocols (Hazardous)'
+      : '5 Prosedur Standar DLH (Kategori B3)';
+  static String get dlhHotlineLabel => AppLocale.isEn
+      ? 'Official Local DLH Hazardous Pickup'
+      : 'Layanan Penjemputan Resmi DLH Terdekat';
+  static String get dlhHotlineSub => AppLocale.isEn
+      ? 'Emergency Line: (021) 1500-xxx'
+      : 'Kontak Darurat: (021) 1500-xxx';
+  static String get catLargeScraps => AppLocale.isEn ? 'Large Scraps' : 'Kain Besar';
+  static String get catMediumScraps => AppLocale.isEn ? 'Medium Scraps' : 'Kain Sedang';
+  static String get catSmallScraps => AppLocale.isEn ? 'Small Scraps' : 'Kain Kecil';
+  static String get catYarnThread => AppLocale.isEn ? 'Yarn / Thread' : 'Sisa Benang';
+  static String get catPackaging => AppLocale.isEn ? 'Packaging / Spools' : 'Kemasan Karton';
+  static String get catAllTutorials => AppLocale.isEn ? 'All Tutorials' : 'Semua Tutorial';
 }

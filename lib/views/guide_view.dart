@@ -94,11 +94,11 @@ class _GuideViewState extends State<GuideView> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Divider(),
-                            const Row(
+                            Row(
                               children: [
-                                Icon(Icons.inventory_2_outlined, size: 16, color: Color(0xFF1B5E20)),
-                                SizedBox(width: 6),
-                                Text('Alat & Bahan:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                                const Icon(Icons.inventory_2_outlined, size: 16, color: Color(0xFF1B5E20)),
+                                const SizedBox(width: 6),
+                                Text(AppText.toolsAndMaterials, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
                               ],
                             ),
                             const SizedBox(height: 6),
@@ -115,11 +115,11 @@ class _GuideViewState extends State<GuideView> {
                               ),
                             ),
                             const SizedBox(height: 10),
-                            const Row(
+                            Row(
                               children: [
-                                Icon(Icons.format_list_numbered, size: 16, color: Color(0xFF1B5E20)),
-                                SizedBox(width: 6),
-                                Text('Langkah Pembuatan:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                                const Icon(Icons.format_list_numbered, size: 16, color: Color(0xFF1B5E20)),
+                                const SizedBox(width: 6),
+                                Text(AppText.stepByStep, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
                               ],
                             ),
                             const SizedBox(height: 4),

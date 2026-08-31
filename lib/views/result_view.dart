@@ -265,7 +265,7 @@ class _ResultViewState extends State<ResultView> {
                                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                'Ukuran/Bentuk: ${category.ukuran}',
+                                '${AppText.sizeOrCharacteristics} ${category.ukuran}',
                                 style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
                               ),
                             ],
@@ -294,13 +294,13 @@ class _ResultViewState extends State<ResultView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Row(
+                      Row(
                         children: [
-                          Icon(Icons.lightbulb_outline, color: Color(0xFF1B5E20), size: 20),
-                          SizedBox(width: 8),
+                          const Icon(Icons.lightbulb_outline, color: Color(0xFF1B5E20), size: 20),
+                          const SizedBox(width: 8),
                           Text(
-                            'Rekomendasi & Potensi Nilai Ekonomi',
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF1B5E20)),
+                            AppText.economicValueTitle,
+                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF1B5E20)),
                           ),
                         ],
                       ),
@@ -329,7 +329,7 @@ class _ResultViewState extends State<ResultView> {
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  'Estimasi Nilai Jual: ${category.estimasiHarga}',
+                                  '${AppText.marketValuePrefix} ${category.estimasiHarga}',
                                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.green),
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -416,11 +416,11 @@ class _ResultViewState extends State<ResultView> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         const Divider(),
-                                        const Row(
+                                        Row(
                                           children: [
-                                            Icon(Icons.inventory_2_outlined, size: 15, color: Colors.teal),
-                                            SizedBox(width: 6),
-                                            Text('Alat & Bahan:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
+                                            const Icon(Icons.inventory_2_outlined, size: 15, color: Colors.teal),
+                                            const SizedBox(width: 6),
+                                            Text(AppText.toolsAndMaterials, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
                                           ],
                                         ),
                                         const SizedBox(height: 6),
@@ -429,11 +429,11 @@ class _ResultViewState extends State<ResultView> {
                                           child: Text('• $m', style: const TextStyle(fontSize: 11)),
                                         )),
                                         const SizedBox(height: 8),
-                                        const Row(
+                                        Row(
                                           children: [
-                                            Icon(Icons.format_list_numbered, size: 15, color: Colors.teal),
-                                            SizedBox(width: 6),
-                                            Text('Langkah Pembuatan:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
+                                            const Icon(Icons.format_list_numbered, size: 15, color: Colors.teal),
+                                            const SizedBox(width: 6),
+                                            Text(AppText.stepByStep, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
                                           ],
                                         ),
                                         const SizedBox(height: 6),
@@ -472,7 +472,7 @@ class _ResultViewState extends State<ResultView> {
                           Icon(Icons.warning_amber_rounded, color: Colors.red.shade800, size: 20),
                           const SizedBox(width: 8),
                           Text(
-                            '5 Prosedur Standar DLH (Kategori B3)',
+                            AppText.dlhTitleBadge,
                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Colors.red.shade900),
                           ),
                         ],
@@ -494,14 +494,16 @@ class _ResultViewState extends State<ResultView> {
                           color: Colors.red.shade100,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: const Row(
+                        child: Row(
                           children: [
-                            Icon(Icons.phone_in_talk, color: Colors.red, size: 18),
-                            SizedBox(width: 8),
+                            const Icon(Icons.phone_in_talk, color: Colors.red, size: 18),
+                            const SizedBox(width: 8),
                             Expanded(
                               child: Text(
-                                'Kontak Darurat / Layanan DLH: Hubungi kantor DLH Kabupaten/Kota terdekat untuk konsultasi manifest limbah.',
-                                style: TextStyle(fontSize: 11, color: Colors.black87),
+                                AppLocale.isEn
+                                    ? 'Emergency Contact / DLH Service: Contact your local municipal environmental office for hazardous waste manifest processing.'
+                                    : 'Kontak Darurat / Layanan DLH: Hubungi kantor DLH Kabupaten/Kota terdekat untuk konsultasi manifest limbah.',
+                                style: const TextStyle(fontSize: 11, color: Colors.black87),
                               ),
                             ),
                           ],

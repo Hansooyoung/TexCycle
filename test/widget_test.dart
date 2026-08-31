@@ -36,11 +36,11 @@ void main() {
     await tester.pumpAndSettle();
 
     // Verifikasi bagian alat dan bahan muncul
-    expect(find.text('Alat & Bahan:'), findsOneWidget);
-    expect(find.text('Langkah Pembuatan:'), findsOneWidget);
+    expect(find.text(AppText.toolsAndMaterials), findsOneWidget);
+    expect(find.text(AppText.stepByStep), findsOneWidget);
   });
 
-  testWidgets('Pengujian Tampilan SplashView (Branding & Preloader Versi 1.2)', (WidgetTester tester) async {
+  testWidgets('Pengujian Tampilan SplashView (Branding & Preloader Versi 1.3)', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: SplashView(autoPreload: false),

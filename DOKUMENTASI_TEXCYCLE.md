@@ -8,7 +8,7 @@
 ### 1.1 Profil Umum
 * **Nama Aplikasi**: **TexCycle** *(Textile + Cycle)*
 * **Tagline**: *"Identifikasi Cerdas, Pengurangan Limbah, dan Penciptaan Nilai untuk Konveksi Mikro"*
-* **Versi**: 1.2 (Advance Production Release)
+* **Versi**: 1.3 (Full Bilingual Advance Production Release)
 * **Kategori / Sub-Tema**: *Waste Reduction & Circular Economy*
 * **Platform Target**: Android (Mobile) & Cross-Platform Web (Google Chrome)
 * **Arsitektur Utama**: **100% On-Device / Edge Computing** (Mandiri, tanpa ketergantungan server cloud/API eksternal)
@@ -363,18 +363,16 @@ Pengembangan aplikasi **TexCycle** telah melalui 3 tahapan rilis utama secara it
 
 ### 8.1 Matriks Perbandingan Fitur & Spesifikasi Teknis Antar Versi
 
-| Fitur / Aspek Teknis | Versi 1.0 (MVP Baseline) | Versi 1.1 (UX & In-App Lens) | Versi 1.2 (Advance Lens & Security) |
-|---|---|---|---|
-| **Antarmuka Kamera** | Pemanggilan kamera bawaan HP (*Native Intent*) | Live In-App Camera Preview (Package `camera`) | **Advance Computer Vision Lens** (Y-Luminance & Jitter Sensing) |
-| **Sensor & Umpan Balik Optik** | Tidak ada (Statis) | Panduan teks jarak 30–40 cm | **Live HUD Lux Gauge**, Deteksi Gerak, 1-Tap Flash, Zoom 1x/2x |
-| **Layar Sambutan (Startup)** | Layar putih kosong (*UI Freeze*) | Layar putih kosong (*UI Freeze*) | **SplashView Preloader** (Pemuatan paralel SQLite & AI TFLite) |
-| **Rekomendasi Daur Ulang** | Menu terpisah (Navigasi manual) | **Terintegrasi Langsung** pada hasil pemindaian | **Terintegrasi Langsung** lengkap dengan accordion langkah DIY |
-| **Sertifikasi APK (Anti-Flagging)** | Debug Development Key | Debug Development Key | **Production Keystore Resmi** (RSA 2048-bit, SHA-256) Signature v1–v4 |
-| **Izin Perangkat (Android Permissions)** | Minta `WRITE_EXTERNAL_STORAGE` | Minta `WRITE_EXTERNAL_STORAGE` | **Nol Izin Penyimpanan** (Hanya Lensa Kamera Aktif, Aman Play Protect) |
-| **Ukuran Berkas APK** | $\approx 76.8\text{ MB}$ (Universal) | $\approx 76.8\text{ MB}$ (Universal) | **$\approx 24.6 - 29.1\text{ MB}$** (Split-per-ABI, 67% Lebih Ringan) |
-| **UX Transisi & Pemuatan** | Indikator lingkaran standar | Shimmer Skeleton Loading pada riwayat | Shimmer Skeleton Loading + Radar Scanner Pulse |
-| **Identitas Ikon Aplikasi** | Default Flutter Logo | Custom Recycle & Eco Leaf Badge | Custom Recycle & Eco Leaf Badge (Semua Resolusi Mipmap) |
-| **Format Konten & Bahasa** | Bahasa akademik / paper penelitian | Profesional publik UMKM konveksi | Profesional publik UMKM konveksi (Bebas emotikon chatbot) |
+| Fitur / Aspek Teknis | Versi 1.0 (MVP Baseline) | Versi 1.1 (UX & In-App Lens) | Versi 1.2 (Advance Lens) | Versi 1.3 (Full Bilingual System) |
+|---|---|---|---|---|
+| **Antarmuka Kamera** | Pemanggilan kamera HP | Live In-App Camera Preview | Advance CV Lens | Advance CV Lens Dwibahasa |
+| **Sensor & Optik** | Tidak ada (Statis) | Panduan teks jarak | Live HUD Lux Gauge, Jitter Sensor | Live HUD Dwibahasa (ID & EN) |
+| **Layar Sambutan** | Layar putih kosong | Layar putih kosong | SplashView Preloader Paralel | SplashView Preloader Dwibahasa v1.3 |
+| **Rekomendasi Daur Ulang**| Menu terpisah | Terintegrasi Langsung | Terintegrasi + Accordion DIY | Full Bilingual DIY & Waste Categories |
+| **Sistem Multi-Bahasa** | Bahasa Indonesia saja | Bahasa Indonesia saja | Pilihan Bahasa Awal (v1.2 Switch) | **100% Full Bilingual (ID & EN)** hingga Data Limbah & DIY |
+| **Sertifikasi APK** | Debug Development Key | Debug Development Key | Production Keystore Resmi | Production Keystore Resmi |
+| **Izin Perangkat** | Minta `WRITE_STORAGE` | Minta `WRITE_STORAGE` | Nol Izin Penyimpanan | Nol Izin Penyimpanan |
+| **Ukuran Berkas APK** | $\approx 76.8\text{ MB}$ | $\approx 76.8\text{ MB}$ | $\approx 24.6 - 29.1\text{ MB}$ | $\approx 24.6 - 29.1\text{ MB}$ |
 
 ---
 
@@ -402,3 +400,11 @@ Pengembangan aplikasi **TexCycle** telah melalui 3 tahapan rilis utama secara it
 * **Startup Preloader Asinkron (SplashView)**: Layar sambutan awal interaktif yang melakukan pemanasan paralel koneksi database, model AI TFLite, dan modul kamera untuk mencegah layar putih kosong.
 * **Advance Computer Vision Lens HUD**: Sensor kecerahan real-time (Y-Luminance), sensor getaran/guncangan tangan, meteran sinyal Lux, tombol pintas 1-tap senter, dan zoom 1x/2x.
 * **Penyusutan Ukuran APK Hingga 67%**: Penyediaan APK arsitektur khusus (`arm64-v8a` $\approx 29\text{ MB}$ dan `armeabi-v7a` $\approx 24\text{ MB}$) yang sangat hemat kuota dan memori HP.
+
+---
+
+### 8.5 Rincian Pembaruan Versi 1.3 (Full Bilingual System Architecture & Data-Level Localization)
+* **Arsitektur Multi-Bahasa Menyeluruh (ID & EN)**: Penerapan pengelola bahasa terpadu `AppLocale` dengan sakelar reaktif 1-ketukan di menu Pengaturan yang memperbarui seluruh 7 layar antarmuka secara instan tanpa perlu memuat ulang (*restart*) aplikasi.
+* **Lokalisasi Data Limbah & Tutorial Daur Ulang**: Internasionalisasi mendalam hingga ke level objek data `WasteCategory` dan `DIYData` (nama limbah, rentang ukuran, deskripsi industri, rekomendasi ekonomi, 5 SOP DLH, serta seluruh langkah panduan DIY disajikan fasih dalam Bahasa Indonesia dan English US).
+* **Standarisasi Terminologi Internasional**: Menggunakan kosakata standar industri sirkular global (*On-Device Machine Learning, Edge Computing, 3-Tier Confidence Validation, Circular Economy, Hazardous Waste SOP*).
+* **Penerbitan Dokumentasi Resmi Bilingual**: Penyediaan dokumentasi lengkap dalam format Markdown dan PDF resolusi cetak A4 dwibahasa (ID dan EN) tanpa mencemari statistik bahasa repositori git.

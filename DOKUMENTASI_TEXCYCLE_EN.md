@@ -8,7 +8,7 @@
 ### 1.1 General Profile
 * **Application Name**: **TexCycle** *(Textile + Cycle)*
 * **Tagline**: *"Intelligent Identification, Waste Reduction, and Value Creation for Micro-Garments"*
-* **Version**: 1.2 (Advance Production Release)
+* **Version**: 1.3 (Full Bilingual Advance Production Release)
 * **Category / Sub-Theme**: *Waste Reduction & Circular Economy*
 * **Target Platforms**: Android (Native Mobile) & Cross-Platform Web (Google Chrome)
 * **Core Architecture**: **100% On-Device / Edge Computing** (Autonomous, zero dependencies on external cloud/API servers)
@@ -356,12 +356,48 @@ TexCycle proves that Edge Artificial Intelligence can be effectively implemented
 
 ## 8. APPLICATION FEATURE EVOLUTION MATRIX (VERSIONS 1.0, 1.1, & 1.2)
 
-| Feature / Aspect | Version 1.0 (MVP Baseline) | Version 1.1 (UX & Live Lens) | Version 1.2 (Advance Lens & Security) |
-|---|---|---|---|
-| **Camera Viewfinder** | Native Device Intent | Live In-App Camera Preview | **Advance Computer Vision Lens** (Y-Luminance & Jitter Sensing) |
-| **Optical Sensors & HUD** | None (Static) | 30–40 cm Distance Text Hint | **Live HUD Lux Gauge**, Jitter Sensor, 1-Tap Flash, 1x/2x Zoom |
-| **Startup (Preloader)** | Blank White Screen (UI Freeze) | Blank White Screen (UI Freeze) | **SplashView Preloader** (Parallel SQLite & TFLite RAM warming) |
-| **Upcycling Recommendations** | Separate Manual Menu | Integrated in Scan Result | **Directly Integrated** with collapsible DIY steps accordion |
-| **Security & Certification** | Debug Development Key | Debug Development Key | **Official Production Keystore** (RSA 2048, SHA-256) Schemes v1–v4 |
-| **Storage Permissions** | Requires WRITE_EXTERNAL_STORAGE | Requires WRITE_EXTERNAL_STORAGE | **Zero Storage Permissions** (Play Protect Clean & Private Sandbox) |
-| **APK Package Footprint** | ~76.8 MB (Universal) | ~76.8 MB (Universal) | **~24.6 – 29.1 MB** (Split-per-ABI, 67% Lighter Download) |
+| Feature / Aspect | Version 1.0 (MVP Baseline) | Version 1.1 (UX & Live Lens) | Version 1.2 (Advance Lens) | Version 1.3 (Full Bilingual System) |
+|---|---|---|---|---|
+| **Camera Viewfinder** | Native Device Intent | Live In-App Camera Preview | Advance CV Lens | Bilingual Advance CV Lens |
+| **Optical Sensors & HUD** | None (Static) | 30–40 cm Distance Text Hint | Live HUD Lux Gauge, Jitter Sensor | Live HUD Bilingual (ID & EN) |
+| **Startup (Preloader)** | Blank White Screen (UI Freeze) | Blank White Screen (UI Freeze) | SplashView Preloader (Parallel) | SplashView Bilingual Preloader v1.3 |
+| **Upcycling Recommendations** | Separate Manual Menu | Integrated in Scan Result | Directly Integrated Accordion | Full Bilingual DIY & Waste Categories |
+| **Multi-Language Architecture** | Indonesian Only | Indonesian Only | Initial Switch (v1.2) | **100% Full Bilingual (ID & EN)** Deep Data-Level |
+| **Security & Certification** | Debug Development Key | Debug Development Key | Official Production Keystore | Official Production Keystore |
+| **Storage Permissions** | Requires WRITE_STORAGE | Requires WRITE_STORAGE | Zero Storage Permissions | Zero Storage Permissions |
+| **APK Package Footprint** | ~76.8 MB (Universal) | ~76.8 MB (Universal) | ~24.6 – 29.1 MB (Split ABI) | ~24.6 – 29.1 MB (Split ABI) |
+
+---
+
+### 8.2 Version 1.0 Baseline Architecture
+* **On-Device MobileNetV2 AI Engine**: Autonomous classification across 8 textile waste classes (5 non-hazardous and 3 hazardous) at $224 \times 224$ px resolution running completely offline.
+* **3-Tier Score Validation Pipeline**: Categorizes inferences into Tier 1 Valid ($\ge 70\%$), Tier 2 Verification Check ($50-70\%$), and Tier 3 Immediate Re-scan ($< 50\%$).
+* **Local SQLite Inventory Ledger**: Records scan logs, timestamp metadata, category classifications, and optional user notes.
+* **Mandatory Hazardous SOPs**: 5-step legal protocols for hazardous waste handling (labeled drums, impermeable PPE, manifest transport).
+* **CSV Report Exporter**: Converts local SQLite logs into standard CSV files for environmental compliance reporting.
+
+---
+
+### 8.3 Version 1.1 Enhancements
+* **In-App Live Lens Scanner**: Replaces third-party camera apps with low-latency in-app live previews.
+* **Seamless DIY Upcycling Integration**: Integrates upcycling project suggestions directly into scan results.
+* **Shimmer Skeleton Loading**: Animated placeholders replace blank spinners during history loads.
+* **Responsive Text Overflow Guard**: `FittedBox` and `Expanded` wrappers prevent yellow-black overflow banners.
+* **App Icon Redesign & Academic Label Sanitation**: Replaces generic default icons with custom recycle-leaf branding.
+
+---
+
+### 8.4 Version 1.2 Enhancements
+* **Production Release Keystore Certification**: Signed with official RSA 2048-bit keys adhering to APK Signature schemes v1–v4 to eliminate Play Protect flags.
+* **Zero Suspicious Storage Permissions**: Stripped legacy storage permissions to use isolated app-specific sandboxes.
+* **Asynchronous Startup Preloader (SplashView)**: Concurrent initialization of database, AI model, and camera modules.
+* **Advance Computer Vision Lens HUD**: Real-time Y-luminance telemetry, hand jitter detection, lux gauge, 1-tap torch toggle, and 1x/2x zoom.
+* **APK Download Footprint Reduction (67%)**: Dedicated architecture builds (`arm64-v8a` $\approx 29\text{ MB}$, `armeabi-v7a` $\approx 24\text{ MB}$).
+
+---
+
+### 8.5 Version 1.3 Enhancements (Full Bilingual System Architecture & Data-Level Localization)
+* **Unified Bilingual Engine (`AppLocale` & `AppText`)**: Reactive 1-tap language switcher in Settings seamlessly toggles between Bahasa Indonesia and US English across all 7 views without app restart.
+* **Data-Level Localization**: Both `WasteCategory` and `DIYData` repositories provide fluent bilingual text (waste names, size brackets, descriptions, economic recommendations, 5-step DLH protocols, and all DIY step-by-step instructions).
+* **Industrial Terminology Alignment**: Fully aligned with international circular economy standards (*On-Device Edge AI, 3-Tier Confidence Validation, Circular Economy, Hazardous Waste SOP*).
+* **Synchronized Bilingual Documentation**: Published complete documentation in both Markdown and high-resolution A4 print-ready PDFs (ID & EN) without inflating repository language statistics.

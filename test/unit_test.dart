@@ -192,7 +192,30 @@ void main() {
         expect(AppText.guideTitle.isNotEmpty, isTrue);
         expect(AppText.settingsTitle.isNotEmpty, isTrue);
         expect(AppText.langPrefTitle.isNotEmpty, isTrue);
+        expect(AppText.economicValueTitle.isNotEmpty, isTrue);
+        expect(AppText.dlhTitleBadge.isNotEmpty, isTrue);
       }
+    });
+
+    test('Memastikan WasteData dan DIYData menyajikan teks dwibahasa secara dinamis', () {
+      // Bahasa Indonesia
+      AppLocale.setLocale('id');
+      final catId = WasteData.getCategory('kain_besar');
+      expect(catId.nama, equals('Kain Perca - Ukuran Besar'));
+      expect(catId.ukuran, equals('> 30 cm'));
+      expect(catId.rekomendasi.first, contains('Pemanfaatan Upcycling'));
+
+      // English (US)
+      AppLocale.setLocale('en');
+      expect(catId.nama, equals('Large Fabric Scraps'));
+      expect(catId.rekomendasi.first, contains('Upcycling Potential'));
+
+      // B3 handling bilingual
+      final b3Cat = WasteData.getCategory('limbah_cair');
+      AppLocale.setLocale('id');
+      expect(b3Cat.prosedurB3.first, contains('DILARANG KERAS'));
+      AppLocale.setLocale('en');
+      expect(b3Cat.prosedurB3.first, contains('STRICTLY FORBIDDEN'));
     });
   });
 }
