@@ -18,7 +18,7 @@ Aplikasi mobile cerdas berbasis **Flutter** untuk klasifikasi, pemilahan, edukas
    - Dilengkapi modul *Computer Vision Fallback & Sensorik* untuk mendeteksi kondisi pencahayaan dan karakteristik tekstil.
 
 2. **🏷️ Klasifikasi Komprehensif 8 Kategori Limbah**:
-   - **Kategori Non-B3 (Upcyclable)**: Kain Perca Besar (>30 cm), Kain Perca Sedang (10–30 cm), Kain Perca Kecil (<10 cm), Sisa Benang/Tali, dan Kemasan Plastik Gulungan.
+   - **Kategori Non-B3 (Upcyclable)**: Limbah Kain (Perca Besar, Sedang, Serpihan), Sisa Benang/Tali, dan Kemasan Plastik Gulungan.
    - **Kategori B3 (Hazardous)**: Limbah Cair Kimia (Pewarna/Pemutih), Sludge IPAL Tekstil Kering, dan Kain Majun Terkontaminasi Oli Mesin.
 
 3. **🛡️ 5 Standar Operasional Prosedur (SOP) B3 DLH**:

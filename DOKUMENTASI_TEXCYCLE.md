@@ -317,9 +317,9 @@ Pipeline pelatihan model machine learning TexCycle dirancang secara mandiri dan 
 
 | No | Label ID | Nama Kategori | Status Regulasi | Target Ukuran Fisik |
 |---|---|---|---|---|
-| 1 | `kain_besar` | Kain Perca Ukuran Besar | Non-B3 | Panjang/lebar $> 30\text{ cm}$ |
-| 2 | `kain_sedang` | Kain Perca Ukuran Sedang | Non-B3 | Ukuran berkisar antara $10 - 30\text{ cm}$ |
-| 3 | `kain_kecil` | Kain Perca Ukuran Kecil | Non-B3 | Ukuran trimming $< 10\text{ cm}$ |
+| 1 | `kain_besar` | Limbah Kain (Perca Besar) | Non-B3 | Potongan Lembaran Pola Konveksi |
+| 2 | `kain_sedang` | Limbah Kain (Perca Sedang) | Non-B3 | Potongan Kain Sisa Konveksi |
+| 3 | `kain_kecil` | Limbah Kain (Serpihan Perca) | Non-B3 | Serpihan Perca & Sisa Trimming |
 | 4 | `benang` | Sisa Benang & Kelos Jahit | Non-B3 | Serat benang campuran & kelos gulungan |
 | 5 | `kemasan` | Kemasan Plastik & Karton | Non-B3 | Silinder karton & plastik pembungkus |
 | 6 | `limbah_cair` | Air Limbah Kimia Pewarna | **B3 (Bahaya)** | Cairan warna pekat sisa sablon/celup |
@@ -408,3 +408,10 @@ Pengembangan aplikasi **TexCycle** telah melalui 3 tahapan rilis utama secara it
 * **Lokalisasi Data Limbah & Tutorial Daur Ulang**: Internasionalisasi mendalam hingga ke level objek data `WasteCategory` dan `DIYData` (nama limbah, rentang ukuran, deskripsi industri, rekomendasi ekonomi, 5 SOP DLH, serta seluruh langkah panduan DIY disajikan fasih dalam Bahasa Indonesia dan English US).
 * **Standarisasi Terminologi Internasional**: Menggunakan kosakata standar industri sirkular global (*On-Device Machine Learning, Edge Computing, 3-Tier Confidence Validation, Circular Economy, Hazardous Waste SOP*).
 * **Penerbitan Dokumentasi Resmi Bilingual**: Penyediaan dokumentasi lengkap dalam format Markdown dan PDF resolusi cetak A4 dwibahasa (ID dan EN) tanpa mencemari statistik bahasa repositori git.
+
+---
+
+### 8.6 Rincian Pembaruan Versi 1.3.1 (Generalisasi Taksonomi Limbah Tekstil & Penyelarasan Naskah INCOM 2026)
+* **Generalisasi Kategori Limbah Tekstil**: Menghilangkan batasan ukuran spesifik sentimeter (`> 30 cm`, `10 - 30 cm`, `< 10 cm`) pada antarmuka, basis data, dan model tampilan, digantikan dengan klasifikasi representatif natural lapangan (`Kain` / `Fabric`, potongan pola lembaran, potongan sedang, dan serpihan trimming).
+* **Penyelarasan Naskah Paper Kompetisi**: Integrasi otomatis struktur bab berjalan (*Heading 1 & Heading 2 Document Outline*) untuk sinkronisasi layout Microsoft Word dan Google Docs dengan margin ketat 4-3-3-3 sesuai template resmi INCOM Vol.3 2026.
+* **Kompilasi Rilis Universal APK v1.3**: Pembuatan paket instalasi siap pakai `TexCycle_v1.3_Universal.apk` dengan sinkronisasi langsung ke Google Drive dan direktori arsip proyek.

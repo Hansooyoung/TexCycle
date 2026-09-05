@@ -317,9 +317,9 @@ The machine learning pipeline for TexCycle is self-contained and reproducible di
 
 | No | Label ID | Category Name | Status | Physical Target Specifications |
 |---|---|---|---|---|
-| 1 | `kain_besar` | Large Fabric Scraps | Non-B3 | Length/width $> 30\text{ cm}$ |
-| 2 | `kain_sedang` | Medium Fabric Scraps | Non-B3 | Dimensions between $10 - 30\text{ cm}$ |
-| 3 | `kain_kecil` | Small Fabric Trimmings | Non-B3 | Edge cutoffs $< 10\text{ cm}$ |
+| 1 | `kain_besar` | Fabric Scraps (Large Cut) | Non-B3 | Fabric Cuts (Garment Pattern Offcuts) |
+| 2 | `kain_sedang` | Fabric Scraps (Medium Cut) | Non-B3 | Fabric Cuts (Workshop Offcuts) |
+| 3 | `kain_kecil` | Fabric Scraps (Trimmings) | Non-B3 | Trimming Scraps & Fine Shreds |
 | 4 | `benang` | Sewing Thread & Bobbin Waste | Non-B3 | Mixed fiber yarn & empty bobbins |
 | 5 | `kemasan` | Plastic Wrapping & Cardboard Cones | Non-B3 | Cardboard cylinders & plastic film |
 | 6 | `limbah_cair` | Chemical Dye Wastewater | **Hazardous B3** | Dark chemical dye effluent from dyeing |
@@ -401,3 +401,10 @@ TexCycle proves that Edge Artificial Intelligence can be effectively implemented
 * **Data-Level Localization**: Both `WasteCategory` and `DIYData` repositories provide fluent bilingual text (waste names, size brackets, descriptions, economic recommendations, 5-step DLH protocols, and all DIY step-by-step instructions).
 * **Industrial Terminology Alignment**: Fully aligned with international circular economy standards (*On-Device Edge AI, 3-Tier Confidence Validation, Circular Economy, Hazardous Waste SOP*).
 * **Synchronized Bilingual Documentation**: Published complete documentation in both Markdown and high-resolution A4 print-ready PDFs (ID & EN) without inflating repository language statistics.
+
+---
+
+### 8.6 Version 1.3.1 Enhancements (Textile Waste Taxonomy Generalization & Academic Paper Synchronization)
+* **Textile Waste Taxonomy Generalization**: Removed rigid centimeter measurement thresholds (`> 30 cm`, `10 - 30 cm`, `< 10 cm`) across user interfaces, local databases, and display models in favor of representative field-level categories (`Fabric` / `Kain`, pattern offcuts, medium workshop offcuts, and trimming scraps).
+* **Academic Paper Document Outline Synchronization**: Integrated automated heading hierarchy (*Heading 1 & Heading 2 Document Outline*) for seamless navigation sync across Microsoft Word and Google Docs adhering to INCOM Vol.3 2026 strict 4-3-3-3 margin guidelines.
+* **Universal Production Release APK v1.3**: Built and published `TexCycle_v1.3_Universal.apk` directly synchronized with Google Drive and project archive folders.
