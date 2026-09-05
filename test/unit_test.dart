@@ -201,13 +201,13 @@ void main() {
       // Bahasa Indonesia
       AppLocale.setLocale('id');
       final catId = WasteData.getCategory('kain_besar');
-      expect(catId.nama, equals('Kain Perca - Ukuran Besar'));
-      expect(catId.ukuran, equals('> 30 cm'));
+      expect(catId.nama, equals('Limbah Kain (Perca Besar)'));
+      expect(catId.ukuran, equals('Kain'));
       expect(catId.rekomendasi.first, contains('Pemanfaatan Upcycling'));
 
       // English (US)
       AppLocale.setLocale('en');
-      expect(catId.nama, equals('Large Fabric Scraps'));
+      expect(catId.nama, equals('Fabric Scraps (Large Cut)'));
       expect(catId.rekomendasi.first, contains('Upcycling Potential'));
 
       // B3 handling bilingual
