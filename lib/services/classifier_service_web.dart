@@ -1,6 +1,8 @@
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:image/image.dart' as img;
+
 import '../core/constants/waste_data.dart';
 import 'classifier_types.dart';
 
@@ -107,7 +109,8 @@ class ClassifierService {
         isConfident: true,
         isUncertain: false,
         isReject: false,
-        pesanValidasi: 'Objek limbah tekstil teridentifikasi dengan baik di Chrome Web.',
+        pesanValidasi:
+            'Objek limbah tekstil teridentifikasi dengan baik di Chrome Web.',
       );
     } catch (e) {
       debugPrint('Error klasifikasi web: $e');

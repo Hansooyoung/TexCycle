@@ -5,7 +5,8 @@ class ScanRecord {
   final String labelNama;
   final int kategoriB3; // 0 = Non-B3, 1 = B3
   final double confidence; // Nilai 0.0 - 1.0
-  final int isUncertain; // 0 = Normal/Yakin (>70%), 1 = Perlu Verifikasi (50%-70%)
+  final int
+  isUncertain; // 0 = Normal/Yakin (>70%), 1 = Perlu Verifikasi (50%-70%)
   final String? catatan;
   final String createdAt;
 

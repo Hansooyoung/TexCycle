@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
+
 import '../core/constants/waste_data.dart';
 import '../core/constants/diy_data.dart';
 import '../core/database/database_helper.dart';
@@ -72,7 +73,9 @@ class _ResultViewState extends State<ResultView> {
         kategoriB3: widget.classification.isB3 ? 1 : 0,
         confidence: widget.classification.confidence,
         isUncertain: widget.classification.isUncertain ? 1 : 0,
-        catatan: _notesController.text.trim().isNotEmpty ? _notesController.text.trim() : null,
+        catatan: _notesController.text.trim().isNotEmpty
+            ? _notesController.text.trim()
+            : null,
         createdAt: nowStr,
       );
 
@@ -100,9 +103,8 @@ class _ResultViewState extends State<ResultView> {
 
       if (mounted) {
         setState(() => _isSaving = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Gagal menyimpan data: $e')),
-        );
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Gagal menyimpan data: $e')));
       }
     }
   }
@@ -116,7 +118,9 @@ class _ResultViewState extends State<ResultView> {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F9FA),
       appBar: AppBar(
-        backgroundColor: isB3 ? const Color(0xFFC62828) : const Color(0xFF1B5E20),
+        backgroundColor: isB3
+            ? const Color(0xFFC62828)
+            : const Color(0xFF1B5E20),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -124,7 +128,11 @@ class _ResultViewState extends State<ResultView> {
         ),
         title: Text(
           AppText.resultTitle,
-          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -143,7 +151,11 @@ class _ResultViewState extends State<ResultView> {
                           width: double.infinity,
                           color: const Color(0xFFE8F5E9),
                           child: const Center(
-                            child: Icon(Icons.recycling, size: 72, color: Color(0xFF2E7D32)),
+                            child: Icon(
+                              Icons.recycling,
+                              size: 72,
+                              color: Color(0xFF2E7D32),
+                            ),
                           ),
                         )
                       : Image.file(
@@ -157,18 +169,29 @@ class _ResultViewState extends State<ResultView> {
                     bottom: 12,
                     left: 12,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 5,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.black.withValues(alpha: 0.75),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Row(
                         children: [
-                          const Icon(Icons.analytics_outlined, color: Colors.greenAccent, size: 14),
+                          const Icon(
+                            Icons.analytics_outlined,
+                            color: Colors.greenAccent,
+                            size: 14,
+                          ),
                           const SizedBox(width: 4),
                           Text(
                             '${AppLocale.isEn ? 'Confidence' : 'Akurasi'}: ${(widget.classification.confidence * 100).toStringAsFixed(1)}%',
-                            style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -183,28 +206,50 @@ class _ResultViewState extends State<ResultView> {
                         if (isUncertain)
                           Container(
                             margin: const EdgeInsets.only(right: 6),
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.amber.shade700,
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Text(
                               AppLocale.isEn ? 'Verify' : 'Perlu Verifikasi',
-                              style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 5,
+                          ),
                           decoration: BoxDecoration(
-                            color: isB3 ? Colors.red.shade800 : Colors.green.shade800,
+                            color: isB3
+                                ? Colors.red.shade800
+                                : Colors.green.shade800,
                             borderRadius: BorderRadius.circular(20),
-                            boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4)],
+                            boxShadow: const [
+                              BoxShadow(color: Colors.black26, blurRadius: 4),
+                            ],
                           ),
                           child: Text(
                             isB3
-                                ? (AppLocale.isEn ? 'Hazardous (B3)' : 'Kategori B3')
-                                : (AppLocale.isEn ? 'Eco-Friendly (Non-B3)' : 'Kategori Non-B3'),
-                            style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+                                ? (AppLocale.isEn
+                                      ? 'Hazardous (B3)'
+                                      : 'Kategori B3')
+                                : (AppLocale.isEn
+                                      ? 'Eco-Friendly (Non-B3)'
+                                      : 'Kategori Non-B3'),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
@@ -226,12 +271,19 @@ class _ResultViewState extends State<ResultView> {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.info_outline, color: Colors.amber.shade900, size: 22),
+                    Icon(
+                      Icons.info_outline,
+                      color: Colors.amber.shade900,
+                      size: 22,
+                    ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
                         widget.classification.pesanValidasi,
-                        style: TextStyle(fontSize: 12, color: Colors.amber.shade900),
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.amber.shade900,
+                        ),
                       ),
                     ),
                   ],
@@ -243,7 +295,9 @@ class _ResultViewState extends State<ResultView> {
             // Card Nama Jenis & Deskripsi
             Card(
               elevation: 2,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -252,7 +306,9 @@ class _ResultViewState extends State<ResultView> {
                     Row(
                       children: [
                         CircleAvatar(
-                          backgroundColor: category.color.withValues(alpha: 0.15),
+                          backgroundColor: category.color.withValues(
+                            alpha: 0.15,
+                          ),
                           child: Icon(category.icon, color: category.color),
                         ),
                         const SizedBox(width: 12),
@@ -262,11 +318,17 @@ class _ResultViewState extends State<ResultView> {
                             children: [
                               Text(
                                 category.nama,
-                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                               Text(
                                 '${AppText.sizeOrCharacteristics} ${category.ukuran}',
-                                style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                                style: TextStyle(
+                                  color: Colors.grey.shade600,
+                                  fontSize: 12,
+                                ),
                               ),
                             ],
                           ),
@@ -276,7 +338,11 @@ class _ResultViewState extends State<ResultView> {
                     const Divider(height: 24),
                     Text(
                       category.deskripsi,
-                      style: const TextStyle(fontSize: 13, color: Colors.black87, height: 1.4),
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: Colors.black87,
+                        height: 1.4,
+                      ),
                     ),
                   ],
                 ),
@@ -288,7 +354,9 @@ class _ResultViewState extends State<ResultView> {
             if (!isB3) ...[
               Card(
                 elevation: 2,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
@@ -296,11 +364,19 @@ class _ResultViewState extends State<ResultView> {
                     children: [
                       Row(
                         children: [
-                          const Icon(Icons.lightbulb_outline, color: Color(0xFF1B5E20), size: 20),
+                          const Icon(
+                            Icons.lightbulb_outline,
+                            color: Color(0xFF1B5E20),
+                            size: 20,
+                          ),
                           const SizedBox(width: 8),
                           Text(
                             AppText.economicValueTitle,
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF1B5E20)),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                              color: Color(0xFF1B5E20),
+                            ),
                           ),
                         ],
                       ),
@@ -325,12 +401,20 @@ class _ResultViewState extends State<ResultView> {
                           ),
                           child: Row(
                             children: [
-                              const Icon(Icons.monetization_on_outlined, color: Colors.green, size: 18),
+                              const Icon(
+                                Icons.monetization_on_outlined,
+                                color: Colors.green,
+                                size: 18,
+                              ),
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
                                   '${AppText.marketValuePrefix} ${category.estimasiHarga}',
-                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.green),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                    color: Colors.green,
+                                  ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -347,7 +431,9 @@ class _ResultViewState extends State<ResultView> {
               const SizedBox(height: 14),
               Builder(
                 builder: (context) {
-                  final matchingTutorials = DIYData.getTutorialsForCategory(widget.classification.jenisId);
+                  final matchingTutorials = DIYData.getTutorialsForCategory(
+                    widget.classification.jenisId,
+                  );
                   if (matchingTutorials.isEmpty) return const SizedBox.shrink();
 
                   return Card(
@@ -363,12 +449,20 @@ class _ResultViewState extends State<ResultView> {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.palette_outlined, color: Colors.teal.shade800, size: 20),
+                              Icon(
+                                Icons.palette_outlined,
+                                color: Colors.teal.shade800,
+                                size: 20,
+                              ),
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
                                   'Ide Kreasi & Proyek Daur Ulang DIY',
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Colors.teal.shade900),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                    color: Colors.teal.shade900,
+                                  ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -377,77 +471,158 @@ class _ResultViewState extends State<ResultView> {
                           const SizedBox(height: 10),
                           Text(
                             'Limbah ini dapat langsung disulap menjadi produk bernilai tambah tinggi dengan panduan berikut:',
-                            style: TextStyle(fontSize: 12, color: Colors.grey.shade700, height: 1.3),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey.shade700,
+                              height: 1.3,
+                            ),
                           ),
                           const SizedBox(height: 12),
-                          ...matchingTutorials.map((tutorial) => Container(
-                            margin: const EdgeInsets.only(bottom: 10),
-                            decoration: BoxDecoration(
-                              color: Colors.teal.shade50.withValues(alpha: 0.5),
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.teal.shade100),
-                            ),
-                            child: Theme(
-                              data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                              child: ExpansionTile(
-                                leading: CircleAvatar(
-                                  backgroundColor: Colors.teal.shade100,
-                                  child: Icon(tutorial.icon, color: Colors.teal.shade900, size: 20),
+                          ...matchingTutorials.map(
+                            (tutorial) => Container(
+                              margin: const EdgeInsets.only(bottom: 10),
+                              decoration: BoxDecoration(
+                                color: Colors.teal.shade50.withValues(
+                                  alpha: 0.5,
                                 ),
-                                title: Text(
-                                  tutorial.title,
-                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-                                ),
-                                subtitle: Row(
-                                  children: [
-                                    Icon(Icons.timer_outlined, size: 12, color: Colors.grey.shade600),
-                                    const SizedBox(width: 4),
-                                    Text(tutorial.duration, style: TextStyle(fontSize: 10, color: Colors.grey.shade600)),
-                                    const SizedBox(width: 10),
-                                    Icon(Icons.stars_outlined, size: 12, color: Colors.grey.shade600),
-                                    const SizedBox(width: 4),
-                                    Text(tutorial.difficulty, style: TextStyle(fontSize: 10, color: Colors.grey.shade600)),
-                                  ],
-                                ),
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        const Divider(),
-                                        Row(
-                                          children: [
-                                            const Icon(Icons.inventory_2_outlined, size: 15, color: Colors.teal),
-                                            const SizedBox(width: 6),
-                                            Text(AppText.toolsAndMaterials, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
-                                          ],
-                                        ),
-                                        const SizedBox(height: 6),
-                                        ...tutorial.materials.map((m) => Padding(
-                                          padding: const EdgeInsets.only(bottom: 2.0),
-                                          child: Text('• $m', style: const TextStyle(fontSize: 11)),
-                                        )),
-                                        const SizedBox(height: 8),
-                                        Row(
-                                          children: [
-                                            const Icon(Icons.format_list_numbered, size: 15, color: Colors.teal),
-                                            const SizedBox(width: 6),
-                                            Text(AppText.stepByStep, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
-                                          ],
-                                        ),
-                                        const SizedBox(height: 6),
-                                        ...tutorial.steps.map((s) => Padding(
-                                          padding: const EdgeInsets.only(bottom: 3.0),
-                                          child: Text(s, style: const TextStyle(fontSize: 11, height: 1.35)),
-                                        )),
-                                      ],
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: Colors.teal.shade100),
+                              ),
+                              child: Theme(
+                                data: Theme.of(context)
+                                    .copyWith(dividerColor: Colors.transparent),
+                                child: ExpansionTile(
+                                  leading: CircleAvatar(
+                                    backgroundColor: Colors.teal.shade100,
+                                    child: Icon(
+                                      tutorial.icon,
+                                      color: Colors.teal.shade900,
+                                      size: 20,
                                     ),
                                   ),
-                                ],
+                                  title: Text(
+                                    tutorial.title,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  subtitle: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.timer_outlined,
+                                        size: 12,
+                                        color: Colors.grey.shade600,
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        tutorial.duration,
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.grey.shade600,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Icon(
+                                        Icons.stars_outlined,
+                                        size: 12,
+                                        color: Colors.grey.shade600,
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        tutorial.difficulty,
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.grey.shade600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                        16,
+                                        0,
+                                        16,
+                                        16,
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Divider(),
+                                          Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.inventory_2_outlined,
+                                                size: 15,
+                                                color: Colors.teal,
+                                              ),
+                                              const SizedBox(width: 6),
+                                              Text(
+                                                AppText.toolsAndMaterials,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 11,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 6),
+                                          ...tutorial.materials.map(
+                                            (m) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                bottom: 2.0,
+                                              ),
+                                              child: Text(
+                                                '• $m',
+                                                style: const TextStyle(
+                                                  fontSize: 11,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.format_list_numbered,
+                                                size: 15,
+                                                color: Colors.teal,
+                                              ),
+                                              const SizedBox(width: 6),
+                                              Text(
+                                                AppText.stepByStep,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 11,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 6),
+                                          ...tutorial.steps.map(
+                                            (s) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                bottom: 3.0,
+                                              ),
+                                              child: Text(
+                                                s,
+                                                style: const TextStyle(
+                                                  fontSize: 11,
+                                                  height: 1.35,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          )),
+                          ),
                         ],
                       ),
                     ),
@@ -469,11 +644,19 @@ class _ResultViewState extends State<ResultView> {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.warning_amber_rounded, color: Colors.red.shade800, size: 20),
+                          Icon(
+                            Icons.warning_amber_rounded,
+                            color: Colors.red.shade800,
+                            size: 20,
+                          ),
                           const SizedBox(width: 8),
                           Text(
                             AppText.dlhTitleBadge,
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Colors.red.shade900),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                              color: Colors.red.shade900,
+                            ),
                           ),
                         ],
                       ),
@@ -483,7 +666,11 @@ class _ResultViewState extends State<ResultView> {
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child: Text(
                             sop,
-                            style: const TextStyle(fontSize: 13, height: 1.35, color: Colors.black87),
+                            style: const TextStyle(
+                              fontSize: 13,
+                              height: 1.35,
+                              color: Colors.black87,
+                            ),
                           ),
                         ),
                       ),
@@ -496,14 +683,21 @@ class _ResultViewState extends State<ResultView> {
                         ),
                         child: Row(
                           children: [
-                            const Icon(Icons.phone_in_talk, color: Colors.red, size: 18),
+                            const Icon(
+                              Icons.phone_in_talk,
+                              color: Colors.red,
+                              size: 18,
+                            ),
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
                                 AppLocale.isEn
                                     ? 'Emergency Contact / DLH Service: Contact your local municipal environmental office for hazardous waste manifest processing.'
                                     : 'Kontak Darurat / Layanan DLH: Hubungi kantor DLH Kabupaten/Kota terdekat untuk konsultasi manifest limbah.',
-                                style: const TextStyle(fontSize: 11, color: Colors.black87),
+                                style: const TextStyle(
+                                  fontSize: 11,
+                                  color: Colors.black87,
+                                ),
                               ),
                             ),
                           ],
@@ -519,7 +713,9 @@ class _ResultViewState extends State<ResultView> {
             // Input Catatan / Estimasi Bobot
             Card(
               elevation: 1,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -531,7 +727,10 @@ class _ResultViewState extends State<ResultView> {
                         SizedBox(width: 6),
                         Text(
                           'Catatan Tambahan (Opsional):',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
                         ),
                       ],
                     ),
@@ -539,10 +738,19 @@ class _ResultViewState extends State<ResultView> {
                     TextField(
                       controller: _notesController,
                       decoration: InputDecoration(
-                        hintText: 'Contoh: Sisa kain katun combed, berat ±2.5 kg',
-                        hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 12),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                        hintText:
+                            'Contoh: Sisa kain katun combed, berat ±2.5 kg',
+                        hintStyle: TextStyle(
+                          color: Colors.grey.shade400,
+                          fontSize: 12,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 10,
+                        ),
                       ),
                     ),
                   ],
@@ -554,20 +762,36 @@ class _ResultViewState extends State<ResultView> {
             // Tombol Aksi
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                backgroundColor: _isSaved ? Colors.grey : const Color(0xFF1B5E20),
+                backgroundColor: _isSaved
+                    ? Colors.grey
+                    : const Color(0xFF1B5E20),
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
               onPressed: (_isSaving || _isSaved) ? null : _saveToDatabase,
               icon: _isSaving
-                  ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                  ? const SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 2,
+                      ),
+                    )
                   : Icon(_isSaved ? Icons.check : Icons.save),
               label: Text(
                 _isSaved
-                    ? (AppLocale.isEn ? 'Saved to History' : 'Sudah Tersimpan di Riwayat')
+                    ? (AppLocale.isEn
+                          ? 'Saved to History'
+                          : 'Sudah Tersimpan di Riwayat')
                     : AppText.btnSaveRecord,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
               ),
             ),
             const SizedBox(height: 10),
@@ -578,7 +802,9 @@ class _ResultViewState extends State<ResultView> {
                   foregroundColor: const Color(0xFF1B5E20),
                   side: const BorderSide(color: Color(0xFF1B5E20)),
                   padding: const EdgeInsets.symmetric(vertical: 13),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -588,7 +814,9 @@ class _ResultViewState extends State<ResultView> {
                 },
                 icon: const Icon(Icons.menu_book),
                 label: Text(
-                  AppLocale.isEn ? 'Open DIY Upcycling Guides' : 'Buka Tutorial Upcycling DIY',
+                  AppLocale.isEn
+                      ? 'Open DIY Upcycling Guides'
+                      : 'Buka Tutorial Upcycling DIY',
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -603,7 +831,9 @@ class _ResultViewState extends State<ResultView> {
                 );
               },
               icon: const Icon(Icons.refresh),
-              label: Text(AppLocale.isEn ? 'Scan Another Fabric' : 'Scan Limbah Lain'),
+              label: Text(
+                AppLocale.isEn ? 'Scan Another Fabric' : 'Scan Limbah Lain',
+              ),
             ),
           ],
         ),

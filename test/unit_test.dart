@@ -43,8 +43,11 @@ void main() {
 
       for (final cls in b3Classes) {
         final cat = WasteData.getCategory(cls);
-        expect(cat.prosedurB3.length, equals(5),
-            reason: '$cls harus memiliki tepat 5 SOP DLH');
+        expect(
+          cat.prosedurB3.length,
+          equals(5),
+          reason: '$cls harus memiliki tepat 5 SOP DLH',
+        );
         for (final sop in cat.prosedurB3) {
           expect(sop.isNotEmpty, isTrue);
         }
@@ -52,12 +55,21 @@ void main() {
     });
 
     test('Memastikan seluruh limbah Non-B3 memiliki rekomendasi upcycling', () {
-      final nonB3Classes = ['kain_besar', 'kain_sedang', 'kain_kecil', 'benang', 'kemasan'];
+      final nonB3Classes = [
+        'kain_besar',
+        'kain_sedang',
+        'kain_kecil',
+        'benang',
+        'kemasan',
+      ];
 
       for (final cls in nonB3Classes) {
         final cat = WasteData.getCategory(cls);
-        expect(cat.rekomendasi.isNotEmpty, isTrue,
-            reason: '$cls harus memiliki minimal 1 rekomendasi upcycling');
+        expect(
+          cat.rekomendasi.isNotEmpty,
+          isTrue,
+          reason: '$cls harus memiliki minimal 1 rekomendasi upcycling',
+        );
       }
     });
 
@@ -121,58 +133,70 @@ void main() {
     });
   });
 
-  group('3. Pengujian Advance Computer Vision Sensorik (Luminance & Stability)', () {
-    String evaluateLighting(double lum) {
-      if (lum < 42.0) return 'dark';
-      if (lum < 75.0) return 'dim';
-      if (lum > 225.0) return 'glare';
-      return 'optimal';
-    }
+  group(
+    '3. Pengujian Advance Computer Vision Sensorik (Luminance & Stability)',
+    () {
+      String evaluateLighting(double lum) {
+        if (lum < 42.0) return 'dark';
+        if (lum < 75.0) return 'dim';
+        if (lum > 225.0) return 'glare';
+        return 'optimal';
+      }
 
-    bool isMotionJitter(double current, double last) {
-      return (current - last).abs() > 28.0;
-    }
+      bool isMotionJitter(double current, double last) {
+        return (current - last).abs() > 28.0;
+      }
 
-    test('Klasifikasi tingkat kecerahan Y-Luminance akurat', () {
-      expect(evaluateLighting(20.0), equals('dark'));
-      expect(evaluateLighting(41.9), equals('dark'));
-      expect(evaluateLighting(42.0), equals('dim'));
-      expect(evaluateLighting(70.0), equals('dim'));
-      expect(evaluateLighting(75.0), equals('optimal'));
-      expect(evaluateLighting(140.0), equals('optimal'));
-      expect(evaluateLighting(225.0), equals('optimal'));
-      expect(evaluateLighting(230.0), equals('glare'));
-    });
+      test('Klasifikasi tingkat kecerahan Y-Luminance akurat', () {
+        expect(evaluateLighting(20.0), equals('dark'));
+        expect(evaluateLighting(41.9), equals('dark'));
+        expect(evaluateLighting(42.0), equals('dim'));
+        expect(evaluateLighting(70.0), equals('dim'));
+        expect(evaluateLighting(75.0), equals('optimal'));
+        expect(evaluateLighting(140.0), equals('optimal'));
+        expect(evaluateLighting(225.0), equals('optimal'));
+        expect(evaluateLighting(230.0), equals('glare'));
+      });
 
-    test('Deteksi guncangan gerak (motion blur threshold) akurat', () {
-      expect(isMotionJitter(100.0, 105.0), isFalse); // Delta 5 (Stabil)
-      expect(isMotionJitter(100.0, 128.0), isFalse); // Delta 28 (Batas stabil)
-      expect(isMotionJitter(100.0, 135.0), isTrue);  // Delta 35 (Guncangan)
-      expect(isMotionJitter(150.0, 110.0), isTrue);  // Delta 40 (Guncangan turun)
-    });
-  });
+      test('Deteksi guncangan gerak (motion blur threshold) akurat', () {
+        expect(isMotionJitter(100.0, 105.0), isFalse); // Delta 5 (Stabil)
+        expect(
+          isMotionJitter(100.0, 128.0),
+          isFalse,
+        ); // Delta 28 (Batas stabil)
+        expect(isMotionJitter(100.0, 135.0), isTrue); // Delta 35 (Guncangan)
+        expect(
+          isMotionJitter(150.0, 110.0),
+          isTrue,
+        ); // Delta 40 (Guncangan turun)
+      });
+    },
+  );
 
   group('4. Pengujian Fitur Multi-Bahasa (AppLocale & AppText)', () {
-    test('Peralihan bahasa ID ke EN dan sebaliknya bekerja reaktif & konsisten', () {
-      AppLocale.setLocale('id');
-      expect(AppLocale.isEn, isFalse);
-      expect(AppLocale.currentLocale, equals('id'));
-      expect(AppText.navHome, equals('Beranda'));
-      expect(AppText.btnScanNow, equals('Identifikasi Limbah Sekarang'));
+    test(
+      'Peralihan bahasa ID ke EN dan sebaliknya bekerja reaktif & konsisten',
+      () {
+        AppLocale.setLocale('id');
+        expect(AppLocale.isEn, isFalse);
+        expect(AppLocale.currentLocale, equals('id'));
+        expect(AppText.navHome, equals('Beranda'));
+        expect(AppText.btnScanNow, equals('Identifikasi Limbah Sekarang'));
 
-      // Switch ke English (US)
-      AppLocale.setLocale('en');
-      expect(AppLocale.isEn, isTrue);
-      expect(AppLocale.currentLocale, equals('en'));
-      expect(AppText.navHome, equals('Home'));
-      expect(AppText.btnScanNow, equals('Scan Textile Waste Now'));
+        // Switch ke English (US)
+        AppLocale.setLocale('en');
+        expect(AppLocale.isEn, isTrue);
+        expect(AppLocale.currentLocale, equals('en'));
+        expect(AppText.navHome, equals('Home'));
+        expect(AppText.btnScanNow, equals('Scan Textile Waste Now'));
 
-      // Toggle kembali ke ID
-      AppLocale.toggleLocale();
-      expect(AppLocale.isEn, isFalse);
-      expect(AppLocale.currentLocale, equals('id'));
-      expect(AppText.navHome, equals('Beranda'));
-    });
+        // Toggle kembali ke ID
+        AppLocale.toggleLocale();
+        expect(AppLocale.isEn, isFalse);
+        expect(AppLocale.currentLocale, equals('id'));
+        expect(AppText.navHome, equals('Beranda'));
+      },
+    );
 
     test('Memastikan seluruh string AppText terdefinisi lengkap & non-empty di kedua bahasa', () {
       for (final lang in ['id', 'en']) {

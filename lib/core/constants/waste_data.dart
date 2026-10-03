@@ -42,8 +42,10 @@ class WasteCategory {
   String get nama => AppLocale.isEn ? namaEn : namaId;
   String get ukuran => AppLocale.isEn ? ukuranEn : ukuranId;
   String get deskripsi => AppLocale.isEn ? deskripsiEn : deskripsiId;
-  List<String> get rekomendasi => AppLocale.isEn ? rekomendasiEn : rekomendasiId;
-  String get estimasiHarga => AppLocale.isEn ? estimasiHargaEn : estimasiHargaId;
+  List<String> get rekomendasi =>
+      AppLocale.isEn ? rekomendasiEn : rekomendasiId;
+  String get estimasiHarga =>
+      AppLocale.isEn ? estimasiHargaEn : estimasiHargaId;
   List<String> get prosedurB3 => AppLocale.isEn ? prosedurB3En : prosedurB3Id;
 }
 
@@ -57,7 +59,8 @@ class WasteData {
       ukuranEn: 'Fabric',
       isB3: false,
       deskripsiId: 'Potongan kain sisa pola potong yang dapat dimanfaatkan untuk aneka produk upcycling.',
-      deskripsiEn: 'Fabric pattern offcuts suitable for functional upcycling goods.',
+      deskripsiEn:
+          'Fabric pattern offcuts suitable for functional upcycling goods.',
       rekomendasiId: [
         'Pemanfaatan Upcycling: Sangat cocok untuk produk fungsional seperti Tote Bag, Sarung Bantal, atau Apron.',
         'Penjualan Bahan Baku: Dapat dijual ke pengepul tekstil dengan estimasi harga Rp 8.000 - Rp 15.000 / kg.',
@@ -264,8 +267,12 @@ class WasteData {
           isB3: false,
           deskripsiId: 'Jenis limbah tekstil umum.',
           deskripsiEn: 'General textile workshop waste.',
-          rekomendasiId: ['Pisahkan limbah menurut jenis bahan dan simpan dalam kondisi kering.'],
-          rekomendasiEn: ['Sort waste by fabric composition and store in a clean, dry location.'],
+          rekomendasiId: [
+            'Pisahkan limbah menurut jenis bahan dan simpan dalam kondisi kering.',
+          ],
+          rekomendasiEn: [
+            'Sort waste by fabric composition and store in a clean, dry location.',
+          ],
           icon: Icons.help_outline,
           color: Colors.grey,
         );

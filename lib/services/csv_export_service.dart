@@ -3,6 +3,7 @@ import 'package:csv/csv.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
+
 import '../../models/scan_record.dart';
 
 class CsvExportService {
@@ -17,7 +18,7 @@ class CsvExportService {
         'Akurasi AI (Confidence)',
         'Catatan / Bobot',
         'Path Foto Lokal',
-      ]
+      ],
     ];
 
     for (var scan in scans) {

@@ -10,12 +10,10 @@ void main() {
     AppLocale.setLocale('id');
   });
 
-  testWidgets('Pengujian Tampilan GuideView (Tutorial Upcycling Offline)', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: GuideView(),
-      ),
-    );
+  testWidgets('Pengujian Tampilan GuideView (Tutorial Upcycling Offline)', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const MaterialApp(home: GuideView()));
 
     // Verifikasi judul halaman
     expect(find.text(AppText.guideTitle), findsOneWidget);
@@ -28,7 +26,10 @@ void main() {
     expect(find.text('Sisa Benang'), findsOneWidget);
 
     // Verifikasi keberadaan tutorial awal
-    expect(find.text('Membuat Tote Bag Belanja Ramah Lingkungan'), findsOneWidget);
+    expect(
+      find.text('Membuat Tote Bag Belanja Ramah Lingkungan'),
+      findsOneWidget,
+    );
     expect(find.text('Membuat Dompet Koin & Pouch Kosmetik'), findsOneWidget);
 
     // Uji interaksi ekspansi tutorial
@@ -40,28 +41,27 @@ void main() {
     expect(find.text(AppText.stepByStep), findsOneWidget);
   });
 
-  testWidgets('Pengujian Tampilan SplashView (Branding & Preloader Versi 1.3)', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: SplashView(autoPreload: false),
-      ),
-    );
+  testWidgets(
+    'Pengujian Tampilan SplashView (Branding & Preloader Versi 1.3)',
+    (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(home: SplashView(autoPreload: false)),
+      );
 
-    // Verifikasi teks branding TexCycle
-    expect(find.text('TexCycle'), findsOneWidget);
-    expect(find.text(AppText.splashSubtitle), findsOneWidget);
-    expect(find.byIcon(Icons.recycling_rounded), findsOneWidget);
-    expect(find.byType(LinearProgressIndicator), findsOneWidget);
+      // Verifikasi teks branding TexCycle
+      expect(find.text('TexCycle'), findsOneWidget);
+      expect(find.text(AppText.splashSubtitle), findsOneWidget);
+      expect(find.byIcon(Icons.recycling_rounded), findsOneWidget);
+      expect(find.byType(LinearProgressIndicator), findsOneWidget);
 
-    await tester.pump(const Duration(milliseconds: 300));
-  });
+      await tester.pump(const Duration(milliseconds: 300));
+    },
+  );
 
-  testWidgets('Pengujian Interaksi Pilihan Bahasa di SettingsView', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: SettingsView(),
-      ),
-    );
+  testWidgets('Pengujian Interaksi Pilihan Bahasa di SettingsView', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const MaterialApp(home: SettingsView()));
 
     // Verifikasi teks awal bahasa Indonesia
     expect(find.text(AppText.langPrefTitle), findsOneWidget);

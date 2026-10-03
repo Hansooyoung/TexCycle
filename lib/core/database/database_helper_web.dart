@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import '../../models/scan_record.dart';
 
 class DatabaseHelper {
@@ -85,7 +86,13 @@ class DatabaseHelper {
 
     if (searchQuery != null && searchQuery.trim().isNotEmpty) {
       final q = searchQuery.trim().toLowerCase();
-      list = list.where((s) => s.labelNama.toLowerCase().contains(q) || (s.catatan?.toLowerCase().contains(q) ?? false)).toList();
+      list = list
+          .where(
+            (s) =>
+                s.labelNama.toLowerCase().contains(q) ||
+                (s.catatan?.toLowerCase().contains(q) ?? false),
+          )
+          .toList();
     }
 
     return list;

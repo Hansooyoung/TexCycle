@@ -29,7 +29,11 @@ class _GuideViewState extends State<GuideView> {
         ),
         title: Text(
           AppText.guideTitle,
-          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
         ),
       ),
       body: Column(
@@ -42,15 +46,30 @@ class _GuideViewState extends State<GuideView> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  _buildTabChip('semua', AppLocale.isEn ? 'All Tutorials' : 'Semua Tutorial'),
+                  _buildTabChip(
+                    'semua',
+                    AppLocale.isEn ? 'All Tutorials' : 'Semua Tutorial',
+                  ),
                   const SizedBox(width: 8),
-                  _buildTabChip('kain_besar', AppLocale.isEn ? 'Large Scraps' : 'Kain Besar'),
+                  _buildTabChip(
+                    'kain_besar',
+                    AppLocale.isEn ? 'Large Scraps' : 'Kain Besar',
+                  ),
                   const SizedBox(width: 8),
-                  _buildTabChip('kain_sedang', AppLocale.isEn ? 'Medium Scraps' : 'Kain Sedang'),
+                  _buildTabChip(
+                    'kain_sedang',
+                    AppLocale.isEn ? 'Medium Scraps' : 'Kain Sedang',
+                  ),
                   const SizedBox(width: 8),
-                  _buildTabChip('kain_kecil', AppLocale.isEn ? 'Small Scraps' : 'Kain Kecil'),
+                  _buildTabChip(
+                    'kain_kecil',
+                    AppLocale.isEn ? 'Small Scraps' : 'Kain Kecil',
+                  ),
                   const SizedBox(width: 8),
-                  _buildTabChip('benang', AppLocale.isEn ? 'Yarn / Thread' : 'Sisa Benang'),
+                  _buildTabChip(
+                    'benang',
+                    AppLocale.isEn ? 'Yarn / Thread' : 'Sisa Benang',
+                  ),
                 ],
               ),
             ),
@@ -65,7 +84,9 @@ class _GuideViewState extends State<GuideView> {
                 final item = filtered[index];
                 return Card(
                   margin: const EdgeInsets.only(bottom: 12),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
                   elevation: 1,
                   child: ExpansionTile(
                     leading: CircleAvatar(
@@ -74,17 +95,40 @@ class _GuideViewState extends State<GuideView> {
                     ),
                     title: Text(
                       item.title,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
                     ),
                     subtitle: Row(
                       children: [
-                        Icon(Icons.schedule, size: 12, color: Colors.grey.shade600),
+                        Icon(
+                          Icons.schedule,
+                          size: 12,
+                          color: Colors.grey.shade600,
+                        ),
                         const SizedBox(width: 4),
-                        Text(item.duration, style: TextStyle(fontSize: 11, color: Colors.grey.shade600)),
+                        Text(
+                          item.duration,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
                         const SizedBox(width: 10),
-                        Icon(Icons.star_outline, size: 12, color: Colors.amber.shade800),
+                        Icon(
+                          Icons.star_outline,
+                          size: 12,
+                          color: Colors.amber.shade800,
+                        ),
                         const SizedBox(width: 4),
-                        Text(item.difficulty, style: TextStyle(fontSize: 11, color: Colors.grey.shade600)),
+                        Text(
+                          item.difficulty,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
                       ],
                     ),
                     children: [
@@ -96,9 +140,19 @@ class _GuideViewState extends State<GuideView> {
                             const Divider(),
                             Row(
                               children: [
-                                const Icon(Icons.inventory_2_outlined, size: 16, color: Color(0xFF1B5E20)),
+                                const Icon(
+                                  Icons.inventory_2_outlined,
+                                  size: 16,
+                                  color: Color(0xFF1B5E20),
+                                ),
                                 const SizedBox(width: 6),
-                                Text(AppText.toolsAndMaterials, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                                Text(
+                                  AppText.toolsAndMaterials,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
+                                ),
                               ],
                             ),
                             const SizedBox(height: 6),
@@ -108,8 +162,18 @@ class _GuideViewState extends State<GuideView> {
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text('• ', style: TextStyle(fontWeight: FontWeight.bold)),
-                                    Expanded(child: Text(m, style: const TextStyle(fontSize: 12))),
+                                    const Text(
+                                      '• ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        m,
+                                        style: const TextStyle(fontSize: 12),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -117,16 +181,32 @@ class _GuideViewState extends State<GuideView> {
                             const SizedBox(height: 10),
                             Row(
                               children: [
-                                const Icon(Icons.format_list_numbered, size: 16, color: Color(0xFF1B5E20)),
+                                const Icon(
+                                  Icons.format_list_numbered,
+                                  size: 16,
+                                  color: Color(0xFF1B5E20),
+                                ),
                                 const SizedBox(width: 6),
-                                Text(AppText.stepByStep, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                                Text(
+                                  AppText.stepByStep,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
+                                ),
                               ],
                             ),
                             const SizedBox(height: 4),
                             ...item.steps.map(
                               (s) => Padding(
                                 padding: const EdgeInsets.only(bottom: 4.0),
-                                child: Text(s, style: const TextStyle(fontSize: 12, height: 1.35)),
+                                child: Text(
+                                  s,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    height: 1.35,
+                                  ),
+                                ),
                               ),
                             ),
                           ],
@@ -146,7 +226,13 @@ class _GuideViewState extends State<GuideView> {
   Widget _buildTabChip(String cat, String label) {
     final isSelected = _selectedCat == cat;
     return ChoiceChip(
-      label: Text(label, style: TextStyle(fontSize: 11, color: isSelected ? Colors.white : Colors.black87)),
+      label: Text(
+        label,
+        style: TextStyle(
+          fontSize: 11,
+          color: isSelected ? Colors.white : Colors.black87,
+        ),
+      ),
       selected: isSelected,
       selectedColor: const Color(0xFF2E7D32),
       onSelected: (_) => setState(() => _selectedCat = cat),

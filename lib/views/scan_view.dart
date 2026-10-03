@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:universal_io/io.dart';
+
 import '../core/localization/app_locale.dart';
 import '../services/classifier_service.dart';
 import 'result_view.dart';
@@ -13,7 +14,8 @@ class ScanView extends StatefulWidget {
   State<ScanView> createState() => _ScanViewState();
 }
 
-class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, SingleTickerProviderStateMixin {
+class _ScanViewState extends State<ScanView>
+    with WidgetsBindingObserver, SingleTickerProviderStateMixin {
   final ImagePicker _picker = ImagePicker();
   CameraController? _cameraController;
   List<CameraDescription> _availableCameras = [];
@@ -96,7 +98,8 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
         setState(() {
           _isCameraReady = false;
           _isCameraError = true;
-          _cameraErrorMessage = 'Tidak ada sensor kamera terdeteksi di perangkat ini.';
+          _cameraErrorMessage =
+              'Tidak ada sensor kamera terdeteksi di perangkat ini.';
         });
       }
     } catch (e) {
@@ -110,7 +113,9 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
     }
   }
 
-  Future<void> _initCameraController(CameraDescription cameraDescription) async {
+  Future<void> _initCameraController(
+    CameraDescription cameraDescription,
+  ) async {
     final CameraController controller = CameraController(
       cameraDescription,
       ResolutionPreset.medium,
@@ -152,7 +157,9 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
   }
 
   void _startImageStreamSafely() {
-    if (_isStreaming || _cameraController == null || !_cameraController!.value.isInitialized) {
+    if (_isStreaming ||
+        _cameraController == null ||
+        !_cameraController!.value.isInitialized) {
       return;
     }
 
@@ -360,10 +367,8 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => ResultView(
-          imageFile: imageFile,
-          classification: result,
-        ),
+        builder: (context) =>
+            ResultView(imageFile: imageFile, classification: result),
       ),
     );
   }
@@ -439,12 +444,19 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.analytics_outlined, size: 16, color: Colors.amber),
+                  const Icon(
+                    Icons.analytics_outlined,
+                    size: 16,
+                    color: Colors.amber,
+                  ),
                   const SizedBox(width: 6),
                   Expanded(
                     child: Text(
                       'Prediksi: ${result.labelNama} (${(result.confidence * 100).toStringAsFixed(1)}%)',
-                      style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
@@ -459,14 +471,23 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
               Navigator.pop(context);
               _startImageStreamSafely();
             },
-            child: const Text('Foto Ulang', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green)),
+            child: const Text(
+              'Foto Ulang',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
+              ),
+            ),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context);
               _navigateToResult(imageFile, result);
             },
-            child: const Text('Tetap Simpan', style: TextStyle(color: Colors.grey)),
+            child: const Text(
+              'Tetap Simpan',
+              style: TextStyle(color: Colors.grey),
+            ),
           ),
         ],
       ),
@@ -475,7 +496,9 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
 
   @override
   Widget build(BuildContext context) {
-    final luxPercent = ((_currentLuminance / 255.0) * 100).clamp(0, 100).toInt();
+    final luxPercent = ((_currentLuminance / 255.0) * 100)
+        .clamp(0, 100)
+        .toInt();
 
     return PopScope(
       canPop: !_isProcessing,
@@ -490,7 +513,11 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
           ),
           title: const Text(
             'Advance Lens Scanner',
-            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           actions: [
             if (_isCameraReady) ...[
@@ -505,7 +532,10 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
               if (_availableCameras.length > 1)
                 IconButton(
                   tooltip: 'Ganti Kamera',
-                  icon: const Icon(Icons.flip_camera_ios_outlined, color: Colors.white70),
+                  icon: const Icon(
+                    Icons.flip_camera_ios_outlined,
+                    color: Colors.white70,
+                  ),
                   onPressed: _isProcessing ? null : _switchCamera,
                 ),
             ],
@@ -518,7 +548,10 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                 // Advance Real-Time HUD Status Banner
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   color: Colors.black,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -528,7 +561,11 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                       Flexible(
                         child: Text(
                           _feedbackMessage,
-                          style: TextStyle(color: _feedbackColor, fontSize: 12, fontWeight: FontWeight.w600),
+                          style: TextStyle(
+                            color: _feedbackColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
                         ),
@@ -540,19 +577,24 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                 // Viewfinder Frame dengan Live Lens & Advance HUD Overlay
                 Expanded(
                   child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 8,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFF121212),
                       borderRadius: BorderRadius.circular(24),
                       border: Border.all(
-                        color: _isProcessing ? Colors.greenAccent : _feedbackColor.withValues(alpha: 0.8),
+                        color: _isProcessing
+                            ? Colors.greenAccent
+                            : _feedbackColor.withValues(alpha: 0.8),
                         width: 2.5,
                       ),
                       boxShadow: [
                         BoxShadow(
                           color: _feedbackColor.withValues(alpha: 0.2),
                           blurRadius: 16,
-                        )
+                        ),
                       ],
                     ),
                     child: ClipRRect(
@@ -570,22 +612,37 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Icon(Icons.videocam_off_outlined, size: 54, color: Colors.grey.shade600),
+                                    Icon(
+                                      Icons.videocam_off_outlined,
+                                      size: 54,
+                                      color: Colors.grey.shade600,
+                                    ),
                                     const SizedBox(height: 12),
                                     Text(
                                       _cameraErrorMessage,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(color: Colors.grey.shade400, fontSize: 12),
+                                      style: TextStyle(
+                                        color: Colors.grey.shade400,
+                                        fontSize: 12,
+                                      ),
                                     ),
                                     const SizedBox(height: 16),
                                     ElevatedButton.icon(
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: const Color(0xFF2E7D32),
+                                        backgroundColor: const Color(
+                                          0xFF2E7D32,
+                                        ),
                                         foregroundColor: Colors.white,
                                       ),
-                                      onPressed: () => _pickFromNative(ImageSource.camera),
-                                      icon: const Icon(Icons.camera_alt, size: 18),
-                                      label: const Text('Buka Kamera Bawaan HP'),
+                                      onPressed: () =>
+                                          _pickFromNative(ImageSource.camera),
+                                      icon: const Icon(
+                                        Icons.camera_alt,
+                                        size: 18,
+                                      ),
+                                      label: const Text(
+                                        'Buka Kamera Bawaan HP',
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -593,7 +650,9 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                             )
                           else
                             const Center(
-                              child: CircularProgressIndicator(color: Colors.greenAccent),
+                              child: CircularProgressIndicator(
+                                color: Colors.greenAccent,
+                              ),
                             ),
 
                           // 2. Grid Reticle Panduan
@@ -602,8 +661,14 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                const Divider(color: Colors.white, thickness: 1),
-                                const Divider(color: Colors.white, thickness: 1),
+                                const Divider(
+                                  color: Colors.white,
+                                  thickness: 1,
+                                ),
+                                const Divider(
+                                  color: Colors.white,
+                                  thickness: 1,
+                                ),
                               ],
                             ),
                           ),
@@ -639,7 +704,10 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                             animation: _scannerAnimation,
                             builder: (context, child) {
                               return Positioned(
-                                top: MediaQuery.of(context).size.height * 0.4 * _scannerAnimation.value,
+                                top:
+                                    MediaQuery.of(context).size.height *
+                                    0.4 *
+                                    _scannerAnimation.value,
                                 left: 0,
                                 right: 0,
                                 child: Container(
@@ -654,10 +722,12 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: _feedbackColor.withValues(alpha: 0.5),
+                                        color: _feedbackColor.withValues(
+                                          alpha: 0.5,
+                                        ),
                                         blurRadius: 8,
                                         spreadRadius: 1,
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -675,16 +745,27 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                               children: [
                                 // Lux Indicator Badge
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 5,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.black.withValues(alpha: 0.7),
                                     borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(color: _feedbackColor.withValues(alpha: 0.5)),
+                                    border: Border.all(
+                                      color: _feedbackColor.withValues(
+                                        alpha: 0.5,
+                                      ),
+                                    ),
                                   ),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Icon(Icons.lightbulb_outline, size: 13, color: _feedbackColor),
+                                      Icon(
+                                        Icons.lightbulb_outline,
+                                        size: 13,
+                                        color: _feedbackColor,
+                                      ),
                                       const SizedBox(width: 5),
                                       Text(
                                         'Lux: $luxPercent%',
@@ -701,19 +782,32 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                                 // Indikator Gerakan / Menstabilkan
                                 if (_isMotionDetected)
                                   Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                      vertical: 5,
+                                    ),
                                     decoration: BoxDecoration(
-                                      color: Colors.amber.shade900.withValues(alpha: 0.85),
+                                      color: Colors.amber.shade900.withValues(
+                                        alpha: 0.85,
+                                      ),
                                       borderRadius: BorderRadius.circular(16),
                                     ),
                                     child: const Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Icon(Icons.vibration, size: 12, color: Colors.white),
+                                        Icon(
+                                          Icons.vibration,
+                                          size: 12,
+                                          color: Colors.white,
+                                        ),
                                         SizedBox(width: 4),
                                         Text(
                                           'Menstabilkan...',
-                                          style: TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.bold),
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -724,21 +818,30 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                                   GestureDetector(
                                     onTap: _toggleFlash,
                                     child: Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                        vertical: 5,
+                                      ),
                                       decoration: BoxDecoration(
                                         color: Colors.amber.shade800,
                                         borderRadius: BorderRadius.circular(16),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: Colors.amber.withValues(alpha: 0.4),
+                                            color: Colors.amber.withValues(
+                                              alpha: 0.4,
+                                            ),
                                             blurRadius: 8,
-                                          )
+                                          ),
                                         ],
                                       ),
                                       child: const Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          Icon(Icons.flash_on, size: 13, color: Colors.white),
+                                          Icon(
+                                            Icons.flash_on,
+                                            size: 13,
+                                            color: Colors.white,
+                                          ),
                                           SizedBox(width: 4),
                                           Text(
                                             'Nyalakan Flash',
@@ -755,14 +858,21 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
 
                                 // Jarak Ideal Badge
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 5,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.black.withValues(alpha: 0.7),
                                     borderRadius: BorderRadius.circular(16),
                                   ),
                                   child: const Text(
                                     '30–40 cm',
-                                    style: TextStyle(color: Colors.white70, fontSize: 11, fontWeight: FontWeight.w600),
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -798,7 +908,10 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
 
                 // Panel Kontrol Pemotretan di Bawah
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 18,
+                  ),
                   color: Colors.black,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -807,8 +920,13 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                       IconButton(
                         tooltip: 'Pilih dari Galeri',
                         iconSize: 30,
-                        icon: const Icon(Icons.photo_library_outlined, color: Colors.white70),
-                        onPressed: _isProcessing ? null : () => _pickFromNative(ImageSource.gallery),
+                        icon: const Icon(
+                          Icons.photo_library_outlined,
+                          color: Colors.white70,
+                        ),
+                        onPressed: _isProcessing
+                            ? null
+                            : () => _pickFromNative(ImageSource.gallery),
                       ),
 
                       // Tombol Shutter Utama
@@ -826,11 +944,15 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                                 color: _feedbackColor.withValues(alpha: 0.4),
                                 blurRadius: 16,
                                 spreadRadius: 2,
-                              )
+                              ),
                             ],
                           ),
                           child: const Center(
-                            child: Icon(Icons.camera_alt, color: Colors.white, size: 34),
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.white,
+                              size: 34,
+                            ),
                           ),
                         ),
                       ),
@@ -839,8 +961,13 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                       IconButton(
                         tooltip: 'Kamera Bawaan HP',
                         iconSize: 28,
-                        icon: const Icon(Icons.tune_outlined, color: Colors.white70),
-                        onPressed: _isProcessing ? null : () => _pickFromNative(ImageSource.camera),
+                        icon: const Icon(
+                          Icons.tune_outlined,
+                          color: Colors.white70,
+                        ),
+                        onPressed: _isProcessing
+                            ? null
+                            : () => _pickFromNative(ImageSource.camera),
                       ),
                     ],
                   ),
@@ -870,13 +997,20 @@ class _ScanViewState extends State<ScanView> with WidgetsBindingObserver, Single
                         const Text(
                           'Menganalisis Serat & Komposisi Limbah...',
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         const SizedBox(height: 8),
                         Text(
                           'Inferensi On-Device MobileNetV2 • 100% Offline',
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.grey.shade400, fontSize: 12),
+                          style: TextStyle(
+                            color: Colors.grey.shade400,
+                            fontSize: 12,
+                          ),
                         ),
                       ],
                     ),

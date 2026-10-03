@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+
 import 'core/localization/app_locale.dart';
 import 'views/splash_view.dart';
 

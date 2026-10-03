@@ -1,8 +1,10 @@
 import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:image/image.dart' as img;
 import 'package:tflite_flutter/tflite_flutter.dart';
+
 import '../core/constants/waste_data.dart';
 import 'classifier_types.dart';
 
@@ -80,7 +82,10 @@ class ClassifierService {
       if (outputType == TensorType.uint8) {
         outputBuffer = List<int>.filled(outputLength, 0).reshape(outputShape);
       } else {
-        outputBuffer = List<double>.filled(outputLength, 0.0).reshape(outputShape);
+        outputBuffer = List<double>.filled(
+          outputLength,
+          0.0,
+        ).reshape(outputShape);
       }
 
       if (_interpreter != null) {
@@ -93,7 +98,9 @@ class ClassifierService {
         if (outputType == TensorType.uint8) {
           probabilities = rawList.map((e) => (e as int) / 255.0).toList();
         } else {
-          probabilities = _normalizeProbabilities(rawList.map((e) => (e as num).toDouble()).toList());
+          probabilities = _normalizeProbabilities(
+            rawList.map((e) => (e as num).toDouble()).toList(),
+          );
         }
       }
 
@@ -117,7 +124,9 @@ class ClassifierService {
         maxScore = (maxScore * 1.8).clamp(0.65, 0.96);
       }
 
-      final predictedJenisId = (bestIndex < _labels.length) ? _labels[bestIndex] : 'kain_sedang';
+      final predictedJenisId = (bestIndex < _labels.length)
+          ? _labels[bestIndex]
+          : 'kain_sedang';
       final category = WasteData.getCategory(predictedJenisId);
 
       ConfidenceTier tier;
@@ -137,13 +146,15 @@ class ClassifierService {
         isConfident = true;
         isUncertain = true;
         isReject = false;
-        pesan = 'Tingkat keyakinan AI sedang (${(maxScore * 100).toStringAsFixed(1)}%). Hasil ditandai Perlu Verifikasi.';
+        pesan =
+            'Tingkat keyakinan AI sedang (${(maxScore * 100).toStringAsFixed(1)}%). Hasil ditandai Perlu Verifikasi.';
       } else {
         tier = ConfidenceTier.reject;
         isConfident = false;
         isUncertain = true;
         isReject = true;
-        pesan = 'Objek tidak dapat dikenali (${(maxScore * 100).toStringAsFixed(1)}%). Harap foto ulang dengan pencahayaan cukup dan jarak 30-40 cm.';
+        pesan =
+            'Objek tidak dapat dikenali (${(maxScore * 100).toStringAsFixed(1)}%). Harap foto ulang dengan pencahayaan cukup dan jarak 30-40 cm.';
       }
 
       return ClassificationResult(
@@ -204,7 +215,10 @@ class ClassifierService {
 
   List<double> _normalizeProbabilities(List<double> scores) {
     double maxVal = scores.reduce((curr, next) => curr > next ? curr : next);
-    List<double> expScores = scores.map((s) => (s - maxVal).clamp(-20.0, 0.0)).map((s) => (s == 0) ? 1.0 : (s > -10 ? (1.0 + s / 10) : 0.01)).toList();
+    List<double> expScores = scores
+        .map((s) => (s - maxVal).clamp(-20.0, 0.0))
+        .map((s) => (s == 0) ? 1.0 : (s > -10 ? (1.0 + s / 10) : 0.01))
+        .toList();
     double sumExp = expScores.reduce((a, b) => a + b);
     if (sumExp == 0) return scores.map((_) => 1.0 / scores.length).toList();
     return expScores.map((e) => e / sumExp).toList();

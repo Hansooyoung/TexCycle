@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+
 import '../core/database/database_helper.dart';
 import '../core/localization/app_locale.dart';
 import '../services/classifier_service.dart';
@@ -13,7 +14,8 @@ class SplashView extends StatefulWidget {
   State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends State<SplashView> with SingleTickerProviderStateMixin {
+class _SplashViewState extends State<SplashView>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animController;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
@@ -30,9 +32,10 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
       duration: const Duration(milliseconds: 1000),
     );
 
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _animController, curve: Curves.easeIn),
-    );
+    _fadeAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _animController, curve: Curves.easeIn));
 
     _scaleAnimation = Tween<double>(begin: 0.88, end: 1.0).animate(
       CurvedAnimation(parent: _animController, curve: Curves.easeOutBack),
@@ -77,7 +80,9 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
       // Tahap 3: Deteksi Sensor Kamera
       if (mounted) {
         setState(() {
-          _loadingStatus = AppLocale.isEn ? 'Calibrating Camera Lens...' : 'Mengalibrasi Lensa Kamera...';
+          _loadingStatus = AppLocale.isEn
+              ? 'Calibrating Camera Lens...'
+              : 'Mengalibrasi Lensa Kamera...';
           _progressValue = 0.95;
         });
       }
@@ -106,7 +111,8 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
         context,
         PageRouteBuilder(
           transitionDuration: const Duration(milliseconds: 400),
-          pageBuilder: (context, animation, secondaryAnimation) => const HomeView(),
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const HomeView(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(opacity: animation, child: child);
           },
@@ -151,7 +157,10 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
                           offset: const Offset(0, 8),
                         ),
                       ],
-                      border: Border.all(color: Colors.greenAccent.withValues(alpha: 0.4), width: 2),
+                      border: Border.all(
+                        color: Colors.greenAccent.withValues(alpha: 0.4),
+                        width: 2,
+                      ),
                     ),
                     child: const Center(
                       child: Icon(
@@ -193,7 +202,9 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
                       child: LinearProgressIndicator(
                         value: _progressValue,
                         backgroundColor: Colors.white.withValues(alpha: 0.15),
-                        valueColor: const AlwaysStoppedAnimation<Color>(Colors.greenAccent),
+                        valueColor: const AlwaysStoppedAnimation<Color>(
+                          Colors.greenAccent,
+                        ),
                         minHeight: 4,
                       ),
                     ),

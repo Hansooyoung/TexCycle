@@ -1,6 +1,8 @@
 import 'dart:io';
+
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
 import '../../models/scan_record.dart';
 
 class DatabaseHelper {
@@ -26,7 +28,9 @@ class DatabaseHelper {
       onUpgrade: (db, oldVersion, newVersion) async {
         if (oldVersion < 2) {
           try {
-            await db.execute('ALTER TABLE scans ADD COLUMN is_uncertain INTEGER DEFAULT 0');
+            await db.execute(
+              'ALTER TABLE scans ADD COLUMN is_uncertain INTEGER DEFAULT 0',
+            );
           } catch (_) {}
         }
       },
@@ -93,8 +97,12 @@ class DatabaseHelper {
   Future<Map<String, dynamic>> getStats30Days() async {
     final db = await instance.database;
     final now = DateTime.now();
-    final thirtyDaysAgo = now.subtract(const Duration(days: 30)).toIso8601String();
-    final sevenDaysAgo = now.subtract(const Duration(days: 7)).toIso8601String();
+    final thirtyDaysAgo = now
+        .subtract(const Duration(days: 30))
+        .toIso8601String();
+    final sevenDaysAgo = now
+        .subtract(const Duration(days: 7))
+        .toIso8601String();
 
     final recentResult = await db.query(
       'scans',
@@ -198,7 +206,9 @@ class DatabaseHelper {
 
   Future<int> deleteScansOlderThanMonths(int months) async {
     final db = await instance.database;
-    final cutoffDate = DateTime.now().subtract(Duration(days: months * 30)).toIso8601String();
+    final cutoffDate = DateTime.now()
+        .subtract(Duration(days: months * 30))
+        .toIso8601String();
 
     final oldRows = await db.query(
       'scans',
@@ -215,7 +225,11 @@ class DatabaseHelper {
       } catch (_) {}
     }
 
-    return await db.delete('scans', where: 'created_at < ?', whereArgs: [cutoffDate]);
+    return await db.delete(
+      'scans',
+      where: 'created_at < ?',
+      whereArgs: [cutoffDate],
+    );
   }
 
   Future<int> clearAll() async {

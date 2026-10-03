@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import '../core/database/database_helper.dart';
 import '../core/localization/app_locale.dart';
 import 'scan_view.dart';
@@ -58,7 +59,11 @@ class _HomeViewState extends State<HomeView> {
             const SizedBox(width: 8),
             const Text(
               'TexCycle',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 22),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontSize: 22,
+              ),
             ),
             const Spacer(),
             Container(
@@ -69,7 +74,11 @@ class _HomeViewState extends State<HomeView> {
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.calendar_today, color: Colors.white70, size: 12),
+                  const Icon(
+                    Icons.calendar_today,
+                    color: Colors.white70,
+                    size: 12,
+                  ),
                   const SizedBox(width: 4),
                   Text(
                     today,
@@ -106,7 +115,7 @@ class _HomeViewState extends State<HomeView> {
                             color: Colors.green.withValues(alpha: 0.3),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
-                          )
+                          ),
                         ],
                       ),
                       child: Column(
@@ -124,7 +133,10 @@ class _HomeViewState extends State<HomeView> {
                           const SizedBox(height: 4),
                           Text(
                             AppText.splashSubtitle,
-                            style: const TextStyle(color: Colors.white70, fontSize: 11),
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 11,
+                            ),
                           ),
                         ],
                       ),
@@ -149,7 +161,11 @@ class _HomeViewState extends State<HomeView> {
                                 Expanded(
                                   child: Row(
                                     children: [
-                                      const Icon(Icons.insert_chart_outlined, size: 18, color: Color(0xFF1B5E20)),
+                                      const Icon(
+                                        Icons.insert_chart_outlined,
+                                        size: 18,
+                                        color: Color(0xFF1B5E20),
+                                      ),
                                       const SizedBox(width: 8),
                                       Expanded(
                                         child: Text(
@@ -168,17 +184,26 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                                 const SizedBox(width: 8),
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 3,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.green.shade50,
                                     borderRadius: BorderRadius.circular(6),
-                                    border: Border.all(color: Colors.green.shade200),
+                                    border: Border.all(
+                                      color: Colors.green.shade200,
+                                    ),
                                   ),
                                   child: Text(
                                     AppText.offlineStatus,
-                                    style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.green),
+                                    style: const TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green,
+                                    ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                             const SizedBox(height: 16),
@@ -192,16 +217,28 @@ class _HomeViewState extends State<HomeView> {
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text(AppText.totalScans, style: const TextStyle(fontSize: 11, color: Colors.blueGrey), overflow: TextOverflow.ellipsis),
+                                        Text(
+                                          AppText.totalScans,
+                                          style: const TextStyle(
+                                            fontSize: 11,
+                                            color: Colors.blueGrey,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                         const SizedBox(height: 4),
                                         FittedBox(
                                           fit: BoxFit.scaleDown,
                                           alignment: Alignment.centerLeft,
                                           child: Text(
                                             '${_stats['total']}x',
-                                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue.shade900),
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.blue.shade900,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -217,16 +254,28 @@ class _HomeViewState extends State<HomeView> {
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text(AppText.nonB3Safe, style: const TextStyle(fontSize: 11, color: Colors.green), overflow: TextOverflow.ellipsis),
+                                        Text(
+                                          AppText.nonB3Safe,
+                                          style: const TextStyle(
+                                            fontSize: 11,
+                                            color: Colors.green,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                         const SizedBox(height: 4),
                                         FittedBox(
                                           fit: BoxFit.scaleDown,
                                           alignment: Alignment.centerLeft,
                                           child: Text(
                                             '${_stats['non_b3']} (${(_stats['percent_non_b3'] as double).toStringAsFixed(0)}%)',
-                                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.green.shade900),
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.green.shade900,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -242,16 +291,28 @@ class _HomeViewState extends State<HomeView> {
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text(AppText.b3Hazardous, style: const TextStyle(fontSize: 11, color: Colors.red), overflow: TextOverflow.ellipsis),
+                                        Text(
+                                          AppText.b3Hazardous,
+                                          style: const TextStyle(
+                                            fontSize: 11,
+                                            color: Colors.red,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                         const SizedBox(height: 4),
                                         FittedBox(
                                           fit: BoxFit.scaleDown,
                                           alignment: Alignment.centerLeft,
                                           child: Text(
                                             '${_stats['b3']} (${(_stats['percent_b3'] as double).toStringAsFixed(0)}%)',
-                                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.red.shade900),
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.red.shade900,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -265,18 +326,27 @@ class _HomeViewState extends State<HomeView> {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(6),
                               child: (_stats['total'] as int == 0)
-                                  ? Container(height: 10, color: Colors.grey.shade200)
+                                  ? Container(
+                                      height: 10,
+                                      color: Colors.grey.shade200,
+                                    )
                                   : Row(
                                       children: [
                                         if ((_stats['non_b3'] as int) > 0)
                                           Expanded(
                                             flex: _stats['non_b3'] as int,
-                                            child: Container(height: 10, color: Colors.green),
+                                            child: Container(
+                                              height: 10,
+                                              color: Colors.green,
+                                            ),
                                           ),
                                         if ((_stats['b3'] as int) > 0)
                                           Expanded(
                                             flex: _stats['b3'] as int,
-                                            child: Container(height: 10, color: Colors.red),
+                                            child: Container(
+                                              height: 10,
+                                              color: Colors.red,
+                                            ),
                                           ),
                                       ],
                                     ),
@@ -299,7 +369,11 @@ class _HomeViewState extends State<HomeView> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Icon(Icons.warning_amber_rounded, color: Colors.orange, size: 28),
+                            const Icon(
+                              Icons.warning_amber_rounded,
+                              color: Colors.orange,
+                              size: 28,
+                            ),
                             const SizedBox(width: 10),
                             Expanded(
                               child: Column(
@@ -307,12 +381,19 @@ class _HomeViewState extends State<HomeView> {
                                 children: [
                                   Text(
                                     AppText.b3WarningTitle,
-                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFF856404)),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                      color: Color(0xFF856404),
+                                    ),
                                   ),
                                   const SizedBox(height: 2),
                                   Text(
                                     AppText.b3WarningMsg,
-                                    style: const TextStyle(fontSize: 11, color: Color(0xFF856404)),
+                                    style: const TextStyle(
+                                      fontSize: 11,
+                                      color: Color(0xFF856404),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -329,28 +410,43 @@ class _HomeViewState extends State<HomeView> {
                         backgroundColor: const Color(0xFF1B5E20),
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 18),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
                         elevation: 2,
                       ),
                       onPressed: () async {
                         await Navigator.push(
-                           context,
-                          MaterialPageRoute(builder: (context) => const ScanView()),
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ScanView(),
+                          ),
                         );
                         _loadStats();
                       },
                       child: Column(
                         children: [
-                          const Icon(Icons.camera_alt_outlined, size: 32, color: Colors.white),
+                          const Icon(
+                            Icons.camera_alt_outlined,
+                            size: 32,
+                            color: Colors.white,
+                          ),
                           const SizedBox(height: 6),
                           Text(
                             AppText.btnScanNow,
-                            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, letterSpacing: 0.3),
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0.3,
+                            ),
                           ),
                           const SizedBox(height: 2),
                           Text(
                             AppText.distanceGuide,
-                            style: const TextStyle(fontSize: 11, color: Colors.white70),
+                            style: const TextStyle(
+                              fontSize: 11,
+                              color: Colors.white70,
+                            ),
                           ),
                         ],
                       ),
@@ -369,7 +465,9 @@ class _HomeViewState extends State<HomeView> {
                             onTap: () async {
                               await Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const HistoryView()),
+                                MaterialPageRoute(
+                                  builder: (context) => const HistoryView(),
+                                ),
                               );
                               _loadStats();
                             },
@@ -385,7 +483,9 @@ class _HomeViewState extends State<HomeView> {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const GuideView()),
+                                MaterialPageRoute(
+                                  builder: (context) => const GuideView(),
+                                ),
                               );
                             },
                           ),
@@ -400,7 +500,9 @@ class _HomeViewState extends State<HomeView> {
                             onTap: () async {
                               await Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const SettingsView()),
+                                MaterialPageRoute(
+                                  builder: (context) => const SettingsView(),
+                                ),
                               );
                               _loadStats();
                             },
@@ -436,7 +538,7 @@ class _HomeViewState extends State<HomeView> {
               color: Colors.black.withValues(alpha: 0.03),
               blurRadius: 6,
               offset: const Offset(0, 2),
-            )
+            ),
           ],
         ),
         child: Column(
