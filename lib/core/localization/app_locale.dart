@@ -220,14 +220,14 @@ class AppText {
   static String get deleteAllRecordsBtn =>
       AppLocale.isEn ? 'Clear All Data' : 'Hapus Seluruh Data';
   static String get privacyTitle => AppLocale.isEn
-      ? '100% Privacy & Offline Guarantee'
-      : 'Jaminan Privasi & Offline 100%';
+      ? 'On-Device Privacy & Offline Mode'
+      : 'Privasi On-Device & Mode Offline';
   static String get privacyDesc => AppLocale.isEn
-      ? 'All photos, classification models, and database records remain exclusively on your device. Zero cloud sync, zero data leaks.'
-      : 'Seluruh foto, model AI, dan data riwayat disimpan secara lokal di perangkat Anda tanpa pernah dikirim ke server luar.';
+      ? 'All photos, classification models, and database records are stored locally on your device without cloud transmission.'
+      : 'Seluruh foto, model AI, dan data riwayat diproses serta disimpan secara lokal di perangkat Anda tanpa transmisi ke server cloud.';
   static String get appVersionLabel => AppLocale.isEn
-      ? 'Version 1.3.0 • Production Release'
-      : 'Versi 1.3.0 • Production Release';
+      ? 'Version 1.3.0 • INCOM 2026 Prototype'
+      : 'Versi 1.3.0 • Prototipe INCOM 2026';
 
   // Additional Result & Guide View Labels
   static String get sizeOrCharacteristics =>
