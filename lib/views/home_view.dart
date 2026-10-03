@@ -404,6 +404,77 @@ class _HomeViewState extends State<HomeView> {
                       const SizedBox(height: 16),
                     ],
 
+                    // Pemberitahuan Fitur Scan dalam Tahap Pengembangan
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFE8F5E9),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: const Color(0xFFA5D6A7)),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Icon(
+                            Icons.construction_rounded,
+                            color: Color(0xFF2E7D32),
+                            size: 24,
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        AppText.scanInDevelopmentTitle,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                          color: Color(0xFF1B5E20),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 6,
+                                        vertical: 2,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFF2E7D32),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Text(
+                                        AppText.scanInDevelopmentBadge,
+                                        style: const TextStyle(
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                          letterSpacing: 0.5,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 3),
+                                Text(
+                                  AppText.scanInDevelopmentMsg,
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    color: Color(0xFF2E7D32),
+                                    height: 1.3,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+
                     // TOMBOL SCAN UTAMA (HERO CTA)
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(

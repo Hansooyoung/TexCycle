@@ -68,6 +68,14 @@ class AppText {
   static String get b3WarningMsg => AppLocale.isEn
       ? 'Hazardous waste detected in the last 7 days. Ensure proper disposal per DLH protocols.'
       : 'Terdeteksi limbah B3 dalam 7 hari terakhir. Pastikan penyimpanan terpisah sesuai SOP DLH.';
+  static String get scanInDevelopmentTitle => AppLocale.isEn
+      ? 'Scan Feature in Development'
+      : 'Fitur Scan dalam Tahap Pengembangan';
+  static String get scanInDevelopmentMsg => AppLocale.isEn
+      ? 'On-device camera AI classification is currently in active development & prototype testing mode for INCOM 2026.'
+      : 'Klasifikasi citra kamera AI on-device saat ini sedang dalam tahap pengembangan & pengujian prototipe untuk INCOM 2026.';
+  static String get scanInDevelopmentBadge =>
+      AppLocale.isEn ? 'PROTOTYPE' : 'PROTOTIPE';
   static String get btnScanNow => AppLocale.isEn
       ? 'Scan Textile Waste Now'
       : 'Identifikasi Limbah Sekarang';
